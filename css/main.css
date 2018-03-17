@@ -5,3 +5,9 @@
 #sideInput{
     width: 80%;
 }
+.brand-logo{
+    margin-top: 10px;
+}
+.brand-logo img{
+    height: 58px;
+}

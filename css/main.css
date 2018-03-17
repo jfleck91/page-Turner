@@ -9,5 +9,18 @@
     margin-top: 10px;
 }
 .brand-logo img{
-    height: 58px;
+    height: 52px;
+}
+.full{
+    width: 100%;
+}
+#frontCover{
+    width: 50vh;
+    display: block;
+    margin: auto;
+}
+@media screen and (max-width: 600px){
+    .brand-logo img{
+        height: 45px;
+    }
 }

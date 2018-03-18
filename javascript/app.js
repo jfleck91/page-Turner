@@ -11,6 +11,19 @@ var config = {
 firebase.initializeApp(config);
 database = firebase.database();
 
+function runSearch() {
+    var fields = "items(title)";
+    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&" + "key=" + googleBooksApiKey + "&maxresults=1&projection=lite";
+    $.ajax({
+        url: queryURL,
+        method: 'GET'
+    }).done(function (response) {
+        console.log(JSON.stringify(response) + "response from Google Books API");
+        console.log(queryURL);
+    })
+}
+
 $(document).ready(function () {
     $(".button-collapse").sideNav();
 });
+runSearch();

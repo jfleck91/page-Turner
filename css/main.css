@@ -5,6 +5,11 @@
 #sideInput{
     width: 80%;
 }
+#advanceField{
+    padding: 0px 15px;
+    margin-top: 5px;
+    border-bottom: 1px solid grey;
+}
 .brand-logo{
     margin-top: 10px;
 }
@@ -15,7 +20,6 @@
     width: 100%;
 }
 #resultRow{
-    border-bottom: 2px solid black;
     text-align: center; 
 }
 
@@ -23,6 +27,13 @@
     width: 50vh;
     display: block;
     margin: auto;
+}
+.row{
+    margin-left: 0;
+    margin-right: 0;
+}
+.collapsible-body{
+    padding: 0 20px;
 }
 @media screen and (max-width: 600px){
     .brand-logo img{

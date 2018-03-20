@@ -71,3 +71,5 @@ $("#advanceSearchColumn .collapsible-header").on("click", function () {
         $(this).find("i").text("keyboard_arrow_up");
     }
 });
+
+$('.carousel.carousel-slider').carousel({fullWidth: true});

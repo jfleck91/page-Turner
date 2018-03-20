@@ -35,6 +35,10 @@
 .collapsible-body{
     padding: 0 20px;
 }
+[name = "filterGroup"]::after{
+    display: inline-block;
+    padding-right: 20px;
+}
 @media screen and (max-width: 600px){
     .brand-logo img{
         height: 45px;

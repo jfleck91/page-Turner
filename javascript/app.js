@@ -14,3 +14,11 @@ database = firebase.database();
 $(document).ready(function () {
     $(".button-collapse").sideNav();
 });
+$("#advanceSearchColumn .collapsible-header").on("click",function(){
+    var iconText = $(this).find("i").text();
+    if(iconText == "keyboard_arrow_up"){
+        $(this).find("i").text("keyboard_arrow_down");
+    }else{
+        $(this).find("i").text("keyboard_arrow_up");
+    }
+});

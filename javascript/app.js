@@ -17,7 +17,7 @@ function runSearch() {
     //isbn
     // Online Computer Library Center Number
     //publisher
-    event.preventDefault();
+
     var title = ":" + $("#titleField").val().trim();
     var author = ":" + $("#authorField").val().trim();
     var subject = ":" + $("#subjectField").val().trim();
@@ -25,7 +25,9 @@ function runSearch() {
     var isbn = ":" + $("#isbnField").val().trim();
     var lccn = ":" + $("#lccnField").val().trim();
     var oclc = ":" + $("#oclcField").val().trim();
-    var filter = $("input[name='filterGroup'][input:checked]").val();
+    ///filter doesn't return the desired value just yet
+    var filter = $("input[name='filterGroup']:checked").val().toLowerCase().split(" ").join("-");
+    console.log(filter + " filter");
 
     var queryURL = "https://www.googleapis.com/books/v1/volumes?q=+intitle" + title + "+inauthor:" + author + "+ subject=" + subject + "&+" + isbn + "&key=" + googleBooksApiKey + "&maxresults=10&projection=lite&filter=" + filter;
 
@@ -55,7 +57,9 @@ function resetForm() {
     $("#authorForm").text("");
     $("#subject").text("");
 }
-$("#submitButton").click(runSearch);
+
+//testing runSearch filters
+setTimeout(runSearch, 10000);
 $(document).ready(function () {
     $(".button-collapse").sideNav();
 });

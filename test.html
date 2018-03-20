@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Page Turner</title>
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	<link rel="stylesheet" href="./css/main.css" type="text/css">
+</head>
+
+<body>
+	<form>
+		Title:
+		<br>
+		<input id="titleForm" type="text" name="title">
+		<br> Author:
+		<br>
+		<input id="authorForm" type="text" name="author">
+
+		<br>Subject:
+		<br>
+		<input id="subjectForm" type="text" name="Subject">
+
+		<br>Publisher:
+		<br>
+		<input id="publisherForm" type="text" name="Publisher">
+		<br>ISBN:
+		<br>
+		<input id="isbnForm" type="text" name="ISBN">
+		<br>LCCN:
+		<br>
+		<input id="lccnForm" type="text" name="lccn">
+		<br>OCLC:
+		<br>
+		<input id="oclcForm" type="text" name="oclc">
+
+		<button id="submitButton">Submit</button>
+	</form>
+	<div id="booksDiv">
+
+	</div>
+	<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<script type="text/javascript" src="./javascript/app.js"></script>
+</body>
+
+</html>

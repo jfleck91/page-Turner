@@ -47,10 +47,10 @@
         <div class = "row">
             <div class = "col s4" id = "advanceSearch">
                 
-                <ul class = "collapsible white" data-collapsible="expandable">
+                <ul class = "collapsible white" data-collapsible="expandable" id = "advanceSearchColumn">
                     <li class = "active">
-                        <div class = "collapsible-header active">
-                            <i class = "material-icons">keyboard_arrow_up</i>
+                        <div class = "collapsible-header">
+                            <i class = "material-icons">keyboard_arrow_down</i>
                             Title
                         </div>
                         <div class = "collapsible-body">
@@ -90,7 +90,7 @@
                             ISBN
                         </div>
                         <div class = "collapsible-body">
-                            <input type="text" id = "titleField" placeholder="ISBN">
+                            <input type="number" id = "titleField" placeholder="ISBN">
                         </div>
                     </li>
                     <li>
@@ -99,7 +99,7 @@
                             Library of Congress Control Number
                         </div>
                         <div class = "collapsible-body">
-                            <input type="text" id = "titleField" placeholder="LCCN">
+                            <input type="number" id = "titleField" placeholder="LCCN">
                         </div>
                     </li>
                     <li>
@@ -108,7 +108,77 @@
                             Online Computer Library Center Number
                         </div>
                         <div class = "collapsible-body">
-                            <input type="text" id = "titleField" placeholder="OCLC">
+                            <input type="number" id = "titleField" placeholder="OCLC">
+                        </div>
+                    </li>
+                    <li>
+                        <div class = "collapsible-header">
+                            <i class = "material-icons">keyboard_arrow_down</i>
+                            Filter By
+                        </div>
+                        <div class = "collapsible-body">
+                           
+                            <p>
+                                <input class="with-gap" name="filterGroup" type="radio" id = "noneFilter" checked />
+                                <label for= "noneFilter">None</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="filterGroup" type="radio" id = "ebooksFilter" />
+                                <label for= "ebooksFilter">Ebooks</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="filterGroup" type="radio" id = "freeEbooksFilter"/>
+                                <label for= "freeEbooksFilter">Free Ebooks</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="filterGroup" type="radio" id = "fullFilter"/>
+                                <label for= "fullFilter">Full</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="filterGroup" type="radio" id = "paidEbooksFilter"  />
+                                <label for= "paidEbooksFilter">Paid Ebooks</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="filterGroup" type="radio" id = "partialFilter"/>
+                                <label for= "partialFilter">Partial</label>
+                            </p>
+                            
+                        </div>
+                    </li>
+                    <li>
+                        <div class = "collapsible-header">
+                            <i class = "material-icons">keyboard_arrow_down</i>
+                            Order By
+                        </div>
+                        <div class = "collapsible-body">
+                            <p>
+                                <input class="with-gap" name="orderGroup" type="radio" id = "newestOrder"  checked/>
+                                <label for= "newestOrder">Newest</label>
+                            </p>
+                            <p>
+                                <input class="with-gap" name="orderGroup" type="radio" id = "relevanceOrder"/>
+                                <label for= "relevanceOrder">Relevance</label>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class = "collapsible-header">
+                            <i class = "material-icons">keyboard_arrow_down</i>
+                            Print Type
+                        </div>
+                        <div class = "collapsible-body">
+                            <p>
+                                <input class = "with-gap" name = "printGroup" type = "radio" id = "allPrint" checked/>
+                                <label for = "allPrint">All</label>
+                            </p>
+                            <p>
+                                <input class = "with-gap" name = "printGroup" type = "radio" id = "bookPrint"/>
+                                <label for = "bookPrint">Book</label>
+                            </p>
+                            <p>
+                                <input class = "with-gap" name = "printGroup" type = "radio" id = "magazinePrint" />
+                                <label for = "magazinePrint">Magazine</label>
+                            </p>
                         </div>
                     </li>
                 </ul>
@@ -122,6 +192,7 @@
 
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script type = "text/javascript" src = "./../javascript/app.js"></script>
 </body>

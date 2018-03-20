@@ -189,9 +189,28 @@
         </div>
     </div>
 
-
-
+    
+    <script id = "search-card-template" type = "text/x-handlebars-template">
+        <div class = "col m4 s6">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{imageSrc}}">
+                </div>
+                <div class="card-content">
+                    <span class = "card-title activator">{{title}}<i class="material-icons right">more_vert</i></span>
+                    <span class = "grey-text author"><i class = "material-icons">person</i>{{author}}</span>
+                    <p class = "description">{{shortDescription}}</p>
+                    <span class = "green-text money"><i class = "material-icons">attach_money</i>{{price}}</span>
+                </div>
+                <div class = "card-reveal">
+                    <span class="card-title grey-text text-darken-4">{{title}}<i class="material-icons right">close</i></span>
+                    <p class = "description">{{longDescription}}</p>
+                </div>
+            </div>
+        </div>
+    </script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script type = "text/javascript" src = "./../javascript/app.js"></script>

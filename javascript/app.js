@@ -73,3 +73,14 @@ $("#advanceSearchColumn .collapsible-header").on("click", function () {
 });
 
 $('.carousel.carousel-slider').carousel({fullWidth: true});
+
+$(document).ready(function(){
+    $('.carousel').carousel({dist:0});
+    window.setInterval(function(){$('.carousel').carousel('next')},5000)
+ });
+
+ $(".btn-floating").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#bottom").offset().top
+    }, 2000);
+});

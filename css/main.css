@@ -52,8 +52,37 @@
 
 #downbutton {
     margin-top: 25px;
-    margin-bottom: 200px;
-    text-align: center
+    margin-bottom: 100px;
+    text-align: center;
       
 }
 
+#about {
+    float: right;
+    width: 25vw;
+    height: 200px;
+    margin-bottom: 50px;
+    }
+
+#aboutexplained{
+    float: left;
+    width: 45vw;
+    height: 200px;
+    background-color: grey;
+    margin-bottom: 50px;
+}
+
+#whyexplained {
+    float: right;
+    width: 45vw;
+    height: 200px;
+    background-color:grey;
+    
+    }
+
+#why{
+    float: left;
+    width: 25vw;
+    height: 200px;
+    
+}

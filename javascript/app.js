@@ -79,8 +79,9 @@ $(document).ready(function(){
     window.setInterval(function(){$('.carousel').carousel('next')},5000)
  });
 
- $(".btn-floating").click(function() {
+ $(".btn-floating2").click(function() {
     $('html, body').animate({
         scrollTop: $("#bottom").offset().top
     }, 2000);
 });
+

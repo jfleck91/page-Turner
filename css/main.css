@@ -61,15 +61,18 @@
     float: right;
     width: 25vw;
     height: 200px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     }
 
 #aboutexplained{
     float: left;
     width: 45vw;
     height: 200px;
-    background-color: grey;
-    margin-bottom: 50px;
+    background-color: gray;
+    margin-bottom: 30px;
+    opacity: 0.7;
+    border-radius: 30px;
+    text-align: center;
 }
 
 #whyexplained {
@@ -77,7 +80,9 @@
     width: 45vw;
     height: 200px;
     background-color:grey;
-    
+    opacity: 0.7;
+    border-radius: 30px;
+    text-align: center;
     }
 
 #why{

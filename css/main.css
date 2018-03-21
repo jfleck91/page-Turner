@@ -57,37 +57,33 @@
       
 }
 
-#about {
-    float: right;
-    width: 25vw;
+.about {
+    
     height: 200px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     }
 
-#aboutexplained{
-    float: left;
-    width: 45vw;
+.aboutexplained{     
     height: 200px;
     background-color: gray;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     opacity: 0.7;
     border-radius: 30px;
     text-align: center;
 }
 
-#whyexplained {
-    float: right;
-    width: 45vw;
+.whyexplained {
     height: 200px;
-    background-color:grey;
+    background-color: grey;
+    margin-bottom: 25px;
     opacity: 0.7;
     border-radius: 30px;
     text-align: center;
     }
 
-#why{
-    float: left;
-    width: 25vw;
+.why{
+ 
     height: 200px;
+    margin-bottom: 25px;
     
 }

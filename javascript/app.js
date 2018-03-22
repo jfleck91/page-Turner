@@ -6,14 +6,14 @@ var config = {
     authDomain: "page-turner-198318.firebaseapp.com",
     databaseURL: "https://page-turner-198318.firebaseio.com",
     projectId: "page-turner-198318",
-    storageBucket: "",
+    storageBucket: "page-turner-198318.appspot.com",
     messagingSenderId: "246039286101"
 };
 firebase.initializeApp(config);
 database = firebase.database();
 
 
-var searchResult = [  
+var searchResult = [
 ];
 var amount = 6;
 ///////////////////////////////////
@@ -21,9 +21,9 @@ var amount = 6;
 // Does not need to be called    //
 // use intialSetupPagination     //
 ///////////////////////////////////
-function generateItems(indexStart, length){
+function generateItems(indexStart, length) {
     $("#cardDiv").empty();
-    for(var i = indexStart; i < indexStart+length;i++){
+    for (var i = indexStart; i < indexStart + length; i++) {
         var value = searchResult[i];
 
         var source = $("#search-card-template").html();
@@ -61,44 +61,44 @@ function generateItems(indexStart, length){
 //      Setup Pagination          //
 // Run this for every ajax call   //
 ////////////////////////////////////
-function initialSetupPagination(){
-    $(".pagination").css("display","block");
-    var numPages = Math.ceil(searchResult.length/amount);
-    
+function initialSetupPagination() {
+    $(".pagination").css("display", "block");
+    var numPages = Math.ceil(searchResult.length / amount);
+
     var pagesDynamic = $("#pages");
     pagesDynamic.empty();
-    for(var i = 0; i < numPages; i++){
+    for (var i = 0; i < numPages; i++) {
         var pagIcon = $("<li class = 'wave-effect'><a href = '#'></a></li>");
-        pagIcon.children("a").text(i+1);
-        pagIcon.attr("data-index", i*6);
-        if(i==0){
+        pagIcon.children("a").text(i + 1);
+        pagIcon.attr("data-index", i * 6);
+        if (i == 0) {
             pagIcon.removeClass("wave-effect");
             pagIcon.addClass("active");
         }
         pagesDynamic.append(pagIcon);
     }
-    if($("#pages li").length>1){
+    if ($("#pages li").length > 1) {
         console.log("Greater")
         $("#pag-next").removeClass("disabled");
     }
     var dataLength = amount;
-    if(searchResult.length < amount){
-        dataLength = searchResult.length-index;
+    if (searchResult.length < amount) {
+        dataLength = searchResult.length - index;
     }
     generateItems(0, dataLength);
 }
 ////////////////////////////////
 //  Left Right Chevron        //
 ////////////////////////////////
-function leftRightChevronCheck(){
-    if($("#pages li").eq(0).hasClass("active")){
+function leftRightChevronCheck() {
+    if ($("#pages li").eq(0).hasClass("active")) {
         $("#pag-back").addClass("disabled");
-    }else{
+    } else {
         $("#pag-back").removeClass("disabled");
     }
-    if($("#pages li").eq($("#pages li").length-1).hasClass("active")){
+    if ($("#pages li").eq($("#pages li").length - 1).hasClass("active")) {
         $("#pag-next").addClass("disabled");
-    }else{
+    } else {
         $("#pag-next").removeClass("disabled");
     }
 }
@@ -232,36 +232,36 @@ $(".btn-floating2").click(function () {
 /////////////////////////////////////////////////
 //pagination buttons                           //
 /////////////////////////////////////////////////
-$(document).on("click", "#pages li:not(.active)", function(){
-    
+$(document).on("click", "#pages li:not(.active)", function () {
+
     var index = parseInt($(this).attr("data-index"));
     var dataLength = 6;
-    if(searchResult.length-index < amount){
-        dataLength = searchResult.length-index;
+    if (searchResult.length - index < amount) {
+        dataLength = searchResult.length - index;
     }
     generateItems(index, dataLength);
     $("#pages").find(".active").addClass("wave-effect").removeClass("active");
     $(this).removeClass("wave-effect").addClass("active");
     leftRightChevronCheck();
 });
-$(document).on("click", "#pag-back:not(.disabled)",function(){
-    var indexElement = $("#pages li").index($("#pages li.active"))-1;
+$(document).on("click", "#pag-back:not(.disabled)", function () {
+    var indexElement = $("#pages li").index($("#pages li.active")) - 1;
     var dataIndex = parseInt($("#pages li").eq(indexElement).attr("data-index"));
     var dataLength = 6;
-    if(searchResult.length-dataIndex < amount){
-        dataLength = searchResult.length-dataIndex;
+    if (searchResult.length - dataIndex < amount) {
+        dataLength = searchResult.length - dataIndex;
     }
     generateItems(dataIndex, dataLength);
     $("#pages").find(".active").addClass("wave-effect").removeClass("active");
     $("#pages li").eq(indexElement).removeClass("wave-effect").addClass("active");
     leftRightChevronCheck();
 });
-$(document).on("click", "#pag-next:not(.disabled)",function(){
-    var indexElement = $("#pages li").index($("#pages li.active"))+1;
+$(document).on("click", "#pag-next:not(.disabled)", function () {
+    var indexElement = $("#pages li").index($("#pages li.active")) + 1;
     var dataIndex = parseInt($("#pages li").eq(indexElement).attr("data-index"));
     var dataLength = 6;
-    if(searchResult.length-dataIndex < amount){
-        dataLength = searchResult.length-dataIndex;
+    if (searchResult.length - dataIndex < amount) {
+        dataLength = searchResult.length - dataIndex;
     }
     console.log(dataIndex);
     console.log(dataLength);
@@ -270,4 +270,3 @@ $(document).on("click", "#pag-next:not(.disabled)",function(){
     $("#pages li").eq(indexElement).removeClass("wave-effect").addClass("active");
     leftRightChevronCheck();
 });
-

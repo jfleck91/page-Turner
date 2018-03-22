@@ -106,7 +106,7 @@ function leftRightChevronCheck() {
 Testing
 generateItems();
 */
-initialSetupPagination();
+// initialSetupPagination();
 function runSearch() {
     //library of congress control num
     //isbn
@@ -128,21 +128,30 @@ function runSearch() {
     var printFilter = $("input:checked").filter("input[name='printGroup']").next().text().toLowerCase();
     console.log(orderFilter + " order filter");
     console.log(printFilter + "print filter");
-    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=+intitle :" + title + "+inauthor :" + author + "+subject : " + subject + "+inpublisher :" + publisher + "+isbn :" + isbn + "+lccn :" + lccn + "+oclc :" + oclc + "&key=" + googleBooksApiKey + "&maxresults=10&projection=lite&filter=" + paidFilter + "&orderBy=" + orderFilter + "&printType=" + printFilter + "";
+    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=+intitle:" + title + "+inauthor:" + author + "+subject: " + subject + "+inpublisher:" + publisher + "+isbn:" + isbn + "+lccn:" + lccn + "+oclc:" + oclc + "&key=" + googleBooksApiKey + "&maxresults=10&projection=lite&orderBy=" + orderFilter + "&printType=" + printFilter + "";
     getURL();
     function getURL() {
         //reminder: add ":" before values in form
         var formArr = [title, author, subject, publisher, isbn, lccn, oclc];
-        var key = ["+intitle :", "+inauthor :", "+subject :", "+inpublisher :", "+isbn :", "+lccn :", "+oclc :"]
+        var key = ["+intitle:", "+inauthor:", "+subject:", "+inpublisher:", "+isbn:", "+lccn:", "+oclc:"]
         console.log(queryURL);
+        //checkString function?
+        checkFilter();
         for (var i = 0; i < formArr.length; i++) {
-            if (formArr[i] !== undefined || "") {
-                queryURL = queryURL.replace(key[i] + formArr[i], "");
+            if (formArr[i] === undefined || formArr[i] === "") {
+                var str = key[i] + formArr[i];
+                console.log(str);
+                queryURL = queryURL.replace(str, "");
                 console.log("query URL after changes" + queryURL);
             }
-            else { };
 
 
+        }
+        function checkFilter() {
+            if (paidFilter !== "none") {
+                queryURL = queryURL + "&filter=" + paidFilter;
+                console.log(queryURL);
+            }
         }
     }
 
@@ -203,7 +212,7 @@ function resetForm() {
 }
 
 //testing runSearch filters
-setTimeout(runSearch, 10000);
+$("#submitSearch").click(runSearch);
 $(document).ready(function () {
     $(".button-collapse").sideNav();
 });

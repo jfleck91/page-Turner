@@ -25,11 +25,16 @@ function runSearch() {
     var isbn = ":" + $("#isbnField").val().trim();
     var lccn = ":" + $("#lccnField").val().trim();
     var oclc = ":" + $("#oclcField").val().trim();
-    ///filter doesn't return the desired value just yet
-    var filter = $("input[name='filterGroup']:checked").val().toLowerCase().split(" ").join("-");
-    console.log(filter + " filter");
 
-    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=+intitle" + title + "+inauthor:" + author + "+ subject=" + subject + "&+" + isbn + "&key=" + googleBooksApiKey + "&maxresults=10&projection=lite&filter=" + filter;
+    var paidFilter = $("input:checked").filter("input[name='filterGroup']").next().text().toLowerCase().split(" ").join("-");
+    console.log(paidFilter + " filter");
+    var orderFilter = $("#input:checked").filter("input[name='orderGroup']").next().text().toLowerCase();
+    var printFilter = $("#input:checked").filter("input[name='printGroup']").next().text().toLowerCase();
+    console.log(orderFilter + " order filter");
+    console.log(printFilter + "print filter");
+
+
+    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=+intitle" + title + "+inauthor:" + author + "+ subject=" + subject + "&+" + isbn + "&key=" + googleBooksApiKey + "&maxresults=10&projection=lite&filter=" + paidFilter + "&orderBy=" + orderFilter + "&printType=" + printFilter + "";
 
 
     $.ajax({
@@ -72,16 +77,15 @@ $("#advanceSearchColumn .collapsible-header").on("click", function () {
     }
 });
 
-$('.carousel.carousel-slider').carousel({fullWidth: true});
+$('.carousel.carousel-slider').carousel({ fullWidth: true });
 
-$(document).ready(function(){
-    $('.carousel').carousel({dist:0});
-    window.setInterval(function(){$('.carousel').carousel('next')},5000)
- });
+$(document).ready(function () {
+    $('.carousel').carousel({ dist: 0 });
+    window.setInterval(function () { $('.carousel').carousel('next') }, 5000)
+});
 
- $(".btn-floating2").click(function() {
+$(".btn-floating2").click(function () {
     $('html, body').animate({
         scrollTop: $("#bottom").offset().top
     }, 2000);
 });
-

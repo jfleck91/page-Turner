@@ -114,13 +114,13 @@ function runSearch() {
     //publisher
 
 
-    var title = ":" + $("#titleField").val().trim();
-    var author = ":" + $("#authorField").val().trim();
-    var subject = ":" + $("#subjectField").val().trim();
-    var publisher = ":" + $("#publisherField").val().trim();
-    var isbn = ":" + $("#isbnField").val().trim();
-    var lccn = ":" + $("#lccnField").val().trim();
-    var oclc = ":" + $("#oclcField").val().trim();
+    var title = $("#titleField").val().trim();
+    var author = $("#authorField").val().trim();
+    var subject = $("#subjectField").val().trim();
+    var publisher = $("#publisherField").val().trim();
+    var isbn = $("#isbnField").val().trim();
+    var lccn = $("#lccnField").val().trim();
+    var oclc = $("#oclcField").val().trim();
 
     var paidFilter = $("input:checked").filter("input[name='filterGroup']").next().text().toLowerCase().split(" ").join("-");
     console.log(paidFilter + " filter");
@@ -128,9 +128,25 @@ function runSearch() {
     var printFilter = $("input:checked").filter("input[name='printGroup']").next().text().toLowerCase();
     console.log(orderFilter + " order filter");
     console.log(printFilter + "print filter");
+    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=+intitle :" + title + "+inauthor :" + author + "+subject : " + subject + "+inpublisher :" + publisher + "+isbn :" + isbn + "+lccn :" + lccn + "+oclc :" + oclc + "&key=" + googleBooksApiKey + "&maxresults=10&projection=lite&filter=" + paidFilter + "&orderBy=" + orderFilter + "&printType=" + printFilter + "";
+    getURL();
+    function getURL() {
+        //reminder: add ":" before values in form
+        var formArr = [title, author, subject, publisher, isbn, lccn, oclc];
+        var key = ["+intitle :", "+inauthor :", "+subject :", "+inpublisher :", "+isbn :", "+lccn :", "+oclc :"]
+        console.log(queryURL);
+        for (var i = 0; i < formArr.length; i++) {
+            if (formArr[i] !== undefined || "") {
+                queryURL = queryURL.replace(key[i] + formArr[i], "");
+                console.log("query URL after changes" + queryURL);
+            }
+            else { };
 
 
-    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=+intitle" + title + "+inauthor:" + author + "+ subject=" + subject + "&+" + isbn + "&key=" + googleBooksApiKey + "&maxresults=10&projection=lite&filter=" + paidFilter + "&orderBy=" + orderFilter + "&printType=" + printFilter + "";
+        }
+    }
+
+
 
 
     $.ajax({

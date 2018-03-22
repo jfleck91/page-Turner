@@ -12,6 +12,7 @@ var config = {
 firebase.initializeApp(config);
 database = firebase.database();
 
+
 var searchResult = [  
 ];
 var amount = 6;
@@ -24,6 +25,7 @@ function generateItems(indexStart, length){
     $("#cardDiv").empty();
     for(var i = indexStart; i < indexStart+length;i++){
         var value = searchResult[i];
+
         var source = $("#search-card-template").html();
         var template = Handlebars.compile(source);
         var context = {
@@ -35,21 +37,21 @@ function generateItems(indexStart, length){
             author: ""
         };
         shortDesc = "";
-        if(value.description!= null){
-            if(value.description.length > 100){
+        if (value.description != null) {
+            if (value.description.length > 100) {
                 shortDesc = value.description.substring(0, 100) + "...";
-            }else{
+            } else {
                 shortDesc = value.description;
             }
             context.shortDescription = shortDesc;
             context.longDescription = value.description;
         }
-  
+
         authors = "";
-        value.authors.forEach(function(authorName){
+        value.authors.forEach(function (authorName) {
             authors += authorName + ', ';
         });
-        authors = authors.substring(0, authors.length-2);
+        authors = authors.substring(0, authors.length - 2);
         context.author = authors;
         var html = template(context);
         $("#cardDiv").append($(html));
@@ -119,11 +121,16 @@ function runSearch() {
     var isbn = ":" + $("#isbnField").val().trim();
     var lccn = ":" + $("#lccnField").val().trim();
     var oclc = ":" + $("#oclcField").val().trim();
-    ///filter doesn't return the desired value just yet
-    var filter = $("input[name='filterGroup']:checked").val().toLowerCase().split(" ").join("-");
-    console.log(filter + " filter");
 
-    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=+intitle" + title + "+inauthor:" + author + "+ subject=" + subject + "&+" + isbn + "&key=" + googleBooksApiKey + "&maxresults=10&projection=lite&filter=" + filter;
+    var paidFilter = $("input:checked").filter("input[name='filterGroup']").next().text().toLowerCase().split(" ").join("-");
+    console.log(paidFilter + " filter");
+    var orderFilter = $("input:checked").filter("input[name='orderGroup']").next().text().toLowerCase();
+    var printFilter = $("input:checked").filter("input[name='printGroup']").next().text().toLowerCase();
+    console.log(orderFilter + " order filter");
+    console.log(printFilter + "print filter");
+
+
+    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=+intitle" + title + "+inauthor:" + author + "+ subject=" + subject + "&+" + isbn + "&key=" + googleBooksApiKey + "&maxresults=10&projection=lite&filter=" + paidFilter + "&orderBy=" + orderFilter + "&printType=" + printFilter + "";
 
 
     $.ajax({
@@ -134,8 +141,8 @@ function runSearch() {
         console.log(queryURL);
 
         searchResult = [];
-        response.items.forEach(function(value){
-            if(value.saleInfo.saleability=="FOR_SALE"){
+        response.items.forEach(function (value) {
+            if (value.saleInfo.saleability == "FOR_SALE") {
                 var book = {
                     title: value.volumeInfo.title,
                     authors: value.volumeInfo.authors,
@@ -147,18 +154,18 @@ function runSearch() {
                     retailPrice: value.saleInfo.retailPrice.amount,
                     buylink: value.saleInfo.buylink
                 };
-                if(value.volumeInfo.hasOwnProperty("description")){
+                if (value.volumeInfo.hasOwnProperty("description")) {
                     book.description = value.volumeInfo.description;
-                }else{
+                } else {
                     book.description = null;
                 }
-                if(value.volumeInfo.hasOwnProperty("industryIdentifiers")){
+                if (value.volumeInfo.hasOwnProperty("industryIdentifiers")) {
                     book.industryIdentifiers = value.volumeInfo.industryIdentifiers;
-                }else{
+                } else {
                     book.industryIdentifiers = null;
                 }
                 searchResult.push(book);
-            } 
+            }
         });
         var description = $("<p>");
         img = $("<img>");
@@ -193,18 +200,19 @@ $("#advanceSearchColumn .collapsible-header").on("click", function () {
     }
 });
 
-$('.carousel.carousel-slider').carousel({fullWidth: true});
+$('.carousel.carousel-slider').carousel({ fullWidth: true });
 
-$(document).ready(function(){
-    $('.carousel').carousel({dist:0});
-    window.setInterval(function(){$('.carousel').carousel('next')},5000)
- });
+$(document).ready(function () {
+    $('.carousel').carousel({ dist: 0 });
+    window.setInterval(function () { $('.carousel').carousel('next') }, 5000)
+});
 
- $(".btn-floating2").click(function() {
+$(".btn-floating2").click(function () {
     $('html, body').animate({
         scrollTop: $("#bottom").offset().top
-    }, 2000);
+    }, 1500);
 });
+
 /////////////////////////////////////////////////
 //pagination buttons                           //
 /////////////////////////////////////////////////
@@ -246,3 +254,4 @@ $(document).on("click", "#pag-next:not(.disabled)",function(){
     $("#pages li").eq(indexElement).removeClass("wave-effect").addClass("active");
     leftRightChevronCheck();
 });
+

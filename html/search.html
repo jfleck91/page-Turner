@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    
+
+<head>
+
 
     <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page Turner</title>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link rel = "stylesheet" href  ="./../css/main.css" type = "text/css">
+    <link rel="stylesheet" href="./../css/main.css" type="text/css">
 </head>
-  <body class = "brown lighten-5">
+
+<body class="brown lighten-5">
     <!--Import jQuery before materialize.js-->
     <div class="navbar-fixed">
-        <nav class = "grey darken-3">
+        <nav class="grey darken-3">
             <div class="nav-wrapper">
-                <a href="./../index.html" class="brand-logo hide-on-med-and-down"><img src = "./../img/logoblank.png"></a>
-                <a href="./../index.html" class = "brand-logo hide-on-large"><img src = "./../img/booklogo.png"></a>
-                <a href="#" data-activates="smallScreen" class="button-collapse"><i class="material-icons">menu</i></a>
+                <a href="./../index.html" class="brand-logo hide-on-med-and-down">
+                    <img src="./../img/logoblank.png">
+                </a>
+                <a href="./../index.html" class="brand-logo hide-on-large">
+                    <img src="./../img/booklogo.png">
+                </a>
+                <a href="#" data-activates="smallScreen" class="button-collapse">
+                    <i class="material-icons">menu</i>
+                </a>
                 <ul class="right hide-on-med-and-down">
                     <li>
                         <div class="input-field center">
@@ -31,159 +39,161 @@
             </div>
         </nav>
     </div>
-    <ul class = "side-nav" id = "smallScreen">
+    <ul class="side-nav" id="smallScreen">
         <li>
-            <div class="input-field center" id = "sideInput">
+            <div class="input-field center" id="sideInput">
                 <i class="material-icons prefix">search</i>
                 <input type="text" placeholder="Search" id="autocomplete-input" class="autocomplete">
             </div>
         </li>
     </ul>
-    <div class = "container white">
-        <div class = "row" id = "resultRow">
-            <h1>"<span id = "queryString"></span>"</h1>
-            <h4><span id = "numberResults"></span> results</h4>
+    <div class="container white">
+        <div class="row" id="resultRow">
+            <h1>"
+                <span id="queryString"></span>"</h1>
+            <h4>
+                <span id="numberResults"></span> results</h4>
         </div>
-        <div class = "row">
-            <div class = "col s4" id = "advanceSearch">
-                
-                <ul class = "collapsible white" data-collapsible="expandable" id = "advanceSearchColumn">
-                    <li class = "active">
-                        <div class = "collapsible-header">
-                            <i class = "material-icons">keyboard_arrow_down</i>
+        <div class="row">
+            <div class="col s4" id="advanceSearch">
+
+                <ul class="collapsible white" data-collapsible="expandable" id="advanceSearchColumn">
+                    <li class="active">
+                        <div class="collapsible-header">
+                            <i class="material-icons">keyboard_arrow_down</i>
                             Title
                         </div>
-                        <div class = "collapsible-body">
-                            <input type="text" id = "titleField" placeholder="Title">
+                        <div class="collapsible-body">
+                            <input type="text" id="titleField" placeholder="Title">
                         </div>
                     </li>
                     <li>
-                        <div class = "collapsible-header">
-                            <i class = "material-icons">keyboard_arrow_down</i>
+                        <div class="collapsible-header">
+                            <i class="material-icons">keyboard_arrow_down</i>
                             Author
                         </div>
-                        <div class = "collapsible-body">
-                            <input type="text" id = "titleField" placeholder="Author">
+                        <div class="collapsible-body">
+                            <input type="text" id="authorField" placeholder="Author">
                         </div>
                     </li>
                     <li>
-                        <div class = "collapsible-header">
-                            <i class = "material-icons">keyboard_arrow_down</i>
+                        <div class="collapsible-header">
+                            <i class="material-icons">keyboard_arrow_down</i>
                             Publisher
                         </div>
-                        <div class = "collapsible-body">
-                            <input type="text" id = "titleField" placeholder="Publisher">
+                        <div class="collapsible-body">
+                            <input type="text" id="publisherField" placeholder="Publisher">
                         </div>
                     </li>
                     <li>
-                        <div class = "collapsible-header">
-                            <i class = "material-icons">keyboard_arrow_down</i>
+                        <div class="collapsible-header">
+                            <i class="material-icons">keyboard_arrow_down</i>
                             Subject
                         </div>
-                        <div class = "collapsible-body">
-                            <input type="text" id = "titleField" placeholder="Subject">
+                        <div class="collapsible-body">
+                            <input type="text" id="subjectField" placeholder="Subject">
                         </div>
                     </li>
                     <li>
-                        <div class = "collapsible-header">
-                            <i class = "material-icons">keyboard_arrow_down</i>
+                        <div class="collapsible-header">
+                            <i class="material-icons">keyboard_arrow_down</i>
                             ISBN
                         </div>
-                        <div class = "collapsible-body">
-                            <input type="number" id = "titleField" placeholder="ISBN">
+                        <div class="collapsible-body">
+                            <input type="number" id="isbnField" placeholder="ISBN">
                         </div>
                     </li>
                     <li>
-                        <div class = "collapsible-header">
-                            <i class = "material-icons">keyboard_arrow_down</i>
+                        <div class="collapsible-header">
+                            <i class="material-icons">keyboard_arrow_down</i>
                             Library of Congress Control Number
                         </div>
-                        <div class = "collapsible-body">
-                            <input type="number" id = "titleField" placeholder="LCCN">
+                        <div class="collapsible-body">
+                            <input type="number" id="lccnField" placeholder="LCCN">
                         </div>
                     </li>
                     <li>
-                        <div class = "collapsible-header">
-                            <i class = "material-icons">keyboard_arrow_down</i>
+                        <div class="collapsible-header">
+                            <i class="material-icons">keyboard_arrow_down</i>
                             Online Computer Library Center Number
                         </div>
-                        <div class = "collapsible-body">
-                            <input type="number" id = "titleField" placeholder="OCLC">
+                        <div class="collapsible-body">
+                            <input type="number" id="oclcField" placeholder="OCLC">
                         </div>
                     </li>
                     <li>
-                        <div class = "collapsible-header">
-                            <i class = "material-icons">keyboard_arrow_down</i>
+                        <div class="collapsible-header">
+                            <i class="material-icons">keyboard_arrow_down</i>
                             Filter By
                         </div>
-                        <div class = "collapsible-body">
-                           
+                        <div class="collapsible-body">
+
                             <p>
-                                <input class="with-gap" name="filterGroup" type="radio" id = "noneFilter" checked />
-                                <label for= "noneFilter">None</label>
+                                <input class="with-gap" name="filterGroup" type="radio" id="noneFilter" checked />
+                                <label for="noneFilter">None</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="filterGroup" type="radio" id = "ebooksFilter" />
-                                <label for= "ebooksFilter">Ebooks</label>
+                                <input class="with-gap" name="filterGroup" type="radio" id="ebooksFilter" />
+                                <label for="ebooksFilter">Ebooks</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="filterGroup" type="radio" id = "freeEbooksFilter"/>
-                                <label for= "freeEbooksFilter">Free Ebooks</label>
+                                <input class="with-gap" name="filterGroup" type="radio" id="freeEbooksFilter" />
+                                <label for="freeEbooksFilter">Free Ebooks</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="filterGroup" type="radio" id = "fullFilter"/>
-                                <label for= "fullFilter">Full</label>
+                                <input class="with-gap" name="filterGroup" type="radio" id="fullFilter" />
+                                <label for="fullFilter">Full</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="filterGroup" type="radio" id = "paidEbooksFilter"  />
-                                <label for= "paidEbooksFilter">Paid Ebooks</label>
+                                <input class="with-gap" name="filterGroup" type="radio" id="paidEbooksFilter" />
+                                <label for="paidEbooksFilter">Paid Ebooks</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="filterGroup" type="radio" id = "partialFilter"/>
-                                <label for= "partialFilter">Partial</label>
+                                <input class="with-gap" name="filterGroup" type="radio" id="partialFilter" />
+                                <label for="partialFilter">Partial</label>
                             </p>
-                            
+
                         </div>
                     </li>
                     <li>
-                        <div class = "collapsible-header">
-                            <i class = "material-icons">keyboard_arrow_down</i>
+                        <div class="collapsible-header">
+                            <i class="material-icons">keyboard_arrow_down</i>
                             Order By
                         </div>
-                        <div class = "collapsible-body">
+                        <div class="collapsible-body">
                             <p>
-                                <input class="with-gap" name="orderGroup" type="radio" id = "newestOrder"  checked/>
-                                <label for= "newestOrder">Newest</label>
+                                <input class="with-gap" name="orderGroup" type="radio" id="newestOrder" checked/>
+                                <label for="newestOrder">Newest</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="orderGroup" type="radio" id = "relevanceOrder"/>
-                                <label for= "relevanceOrder">Relevance</label>
+                                <input class="with-gap" name="orderGroup" type="radio" id="relevanceOrder" />
+                                <label for="relevanceOrder">Relevance</label>
                             </p>
                         </div>
                     </li>
                     <li>
-                        <div class = "collapsible-header">
-                            <i class = "material-icons">keyboard_arrow_down</i>
+                        <div class="collapsible-header">
+                            <i class="material-icons">keyboard_arrow_down</i>
                             Print Type
                         </div>
-                        <div class = "collapsible-body">
+                        <div class="collapsible-body">
                             <p>
-                                <input class = "with-gap" name = "printGroup" type = "radio" id = "allPrint" checked/>
-                                <label for = "allPrint">All</label>
+                                <input class="with-gap" name="printGroup" type="radio" id="allPrint" checked/>
+                                <label for="allPrint">All</label>
                             </p>
                             <p>
-                                <input class = "with-gap" name = "printGroup" type = "radio" id = "bookPrint"/>
-                                <label for = "bookPrint">Book</label>
+                                <input class="with-gap" name="printGroup" type="radio" id="bookPrint" />
+                                <label for="bookPrint">Book</label>
                             </p>
                             <p>
-                                <input class = "with-gap" name = "printGroup" type = "radio" id = "magazinePrint" />
-                                <label for = "magazinePrint">Magazine</label>
+                                <input class="with-gap" name="printGroup" type="radio" id="magazinePrint" />
+                                <label for="magazinePrint">Magazine</label>
                             </p>
                         </div>
                     </li>
                 </ul>
             </div>
-            <div class = "col s8" id = "searchResult">
+            <div class="col s8" id="searchResult">
 
             </div>
         </div>
@@ -213,6 +223,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script type = "text/javascript" src = "./../javascript/app.js"></script>
+    <script type="text/javascript" src="./../javascript/app.js"></script>
 </body>
+
 </html>

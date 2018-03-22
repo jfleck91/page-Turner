@@ -131,14 +131,22 @@ function runSearch() {
     //isbn
     // Online Computer Library Center Number
     //publisher
-    event.preventDefault();
-    var title = ":" + $("#titleForm").val().trim();
-    var author = ":" + $("#authorForm").val().trim();
-    var subject = ":" + $("#subjectForm").val().trim();
-    var isbn = ":9780689713101";
-    $.each($('form input:text'), function generateQuery(index, field){});
-    //var queryURL = "https://www.googleapis.com/books/v1/volumes?q=+intitle" + title + "+inauthor:" + author + "+ subject=" + subject + "&" + isbn + "&key=" + googleBooksApiKey + "&maxresults=10&projection=lite";
-    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=+" + isbn + "&key=" + googleBooksApiKey + "&maxresults=10&projection=lite"
+
+
+    var title = ":" + $("#titleField").val().trim();
+    var author = ":" + $("#authorField").val().trim();
+    var subject = ":" + $("#subjectField").val().trim();
+    var publisher = ":" + $("#publisherField").val().trim();
+    var isbn = ":" + $("#isbnField").val().trim();
+    var lccn = ":" + $("#lccnField").val().trim();
+    var oclc = ":" + $("#oclcField").val().trim();
+    ///filter doesn't return the desired value just yet
+    var filter = $("input[name='filterGroup']:checked").val().toLowerCase().split(" ").join("-");
+    console.log(filter + " filter");
+
+    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=+intitle" + title + "+inauthor:" + author + "+ subject=" + subject + "&+" + isbn + "&key=" + googleBooksApiKey + "&maxresults=10&projection=lite&filter=" + filter;
+
+
     $.ajax({
         url: queryURL,
         method: 'GET'
@@ -191,15 +199,31 @@ function resetForm() {
     $("#authorForm").text("");
     $("#subject").text("");
 }
-$("#submitButton").click(runSearch);
+
+//testing runSearch filters
+setTimeout(runSearch, 10000);
 $(document).ready(function () {
     $(".button-collapse").sideNav();
 });
-$("#advanceSearchColumn .collapsible-header").on("click",function(){
+$("#advanceSearchColumn .collapsible-header").on("click", function () {
     var iconText = $(this).find("i").text();
-    if(iconText == "keyboard_arrow_up"){
+    if (iconText == "keyboard_arrow_up") {
         $(this).find("i").text("keyboard_arrow_down");
-    }else{
+    } else {
         $(this).find("i").text("keyboard_arrow_up");
     }
 });
+
+$('.carousel.carousel-slider').carousel({fullWidth: true});
+
+$(document).ready(function(){
+    $('.carousel').carousel({dist:0});
+    window.setInterval(function(){$('.carousel').carousel('next')},5000)
+ });
+
+ $(".btn-floating2").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#bottom").offset().top
+    }, 2000);
+});
+

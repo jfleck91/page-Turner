@@ -6,7 +6,7 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page Turner</title>
+    <title>page Turner</title>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -15,38 +15,82 @@
 </head>
 
 <body class="brown lighten-4">
-    <!--Import jQuery before materialize.js-->
-    <div class="navbar-fixed">
-        <nav class="grey darken-3">
-            <div class="nav-wrapper">
-            <a href="./index.html" class="brand-logo hide-on-med-and-down"><img src = "./img/logoblank.png"></a>
-            <a href="./index.html" class = "brand-logo hide-on-large"><img src = "./img/booklogo.png"></a>
-            <a href="#" data-activates="smallScreen" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">page Turner</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>
-                    <div class="input-field center">
-                        <i class="white-text material-icons prefix">search</i>
-                        <input type="text" placeholder="Search" id="autocomplete-input" class="autocomplete white-text">
-                    </div>
+                    <a href="sass.html">primary</a>
+                </li>
+                <li>
+                    <a href="badges.html">primary</a>
+                </li>
+                <li>
+                    <a href="collapsible.html">primary</a>
+                </li>
+                <li>
+                    <a herf="search.html">search</a>
                 </li>
             </ul>
-            
-            </div>
-        </nav>
-    </div>
-    <ul class="side-nav" id="smallScreen">
-        <li>
-            <div class="input-field center" id="sideInput">
-                <i class="material-icons prefix">search</i>
-                <input type="text" placeholder="Search" id="autocomplete-input" class="autocomplete">
-            </div>
-        </li>
-    </ul>
-    <div class = "container grey">
-        <div>
-            <img src ="" id = "frontCover">
         </div>
-        
+    </nav>
+    <div class="container grey">
+        <div class="row">
+            <div class="col s12">This div is 12-columns wide on all screen sizes</div>
+            <div class="col s12"> success</div>
+            <div class="col s6">6-columns (one-half)</div>
+            <div class="col s6">6-columns (one-half)</div>
+        </div>
+    </div>
+
+
+
+    <div class="container grey">
+        <div>
+            <img src="" id="frontCover">
+        </div>
+
+        <div class="row">
+            <div class="col s12 m2">
+                <p class="z-depth-1">z-depth-1</p>
+            </div>
+            <div class="col s12 m2">
+                <p class="z-depth-2">z-depth-2</p>
+            </div>
+            <div class="col s12 m2">
+                <p class="z-depth-3">z-depth-3</p>
+            </div>
+            <div class="col s12 m2">
+                <p class="z-depth-4">z-depth-4</p>
+            </div>
+            <div class="col s12 m2">
+                <p class="z-depth-5">z-depth-5</p>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col s12 m2">
+                <p class="z-depth-1">z-depth-1</p>
+            </div>
+            <div class="col s12 m2">
+                <p class="z-depth-2">z-depth-2</p>
+            </div>
+            <div class="col s12 m2">
+                <p class="z-depth-3">z-depth-3</p>
+            </div>
+            <div class="col s12 m2">
+                <p class="z-depth-4">z-depth-4</p>
+            </div>
+            <div class="col s12 m2">
+                <p class="z-depth-5">z-depth-5</p>
+            </div>
+
+        </div>
+
+
+    </div>
+
     </div>
 
 
@@ -55,6 +99,45 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script type="text/javascript" src="./javascript/app.js"></script>
+
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li>
+                            <a class="grey-text text-lighten-3" href="#!">Link 1</a>
+                        </li>
+                        <li>
+                            <a class="grey-text text-lighten-3" href="#!">Link 2</a>
+                        </li>
+                        <li>
+                            <a class="grey-text text-lighten-3" href="#!">Link 3</a>
+                        </li>
+                        <li>
+                            <a class="grey-text text-lighten-3" href="#!">Link 4</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2014 Copyright Text
+                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+        </div>
+    </footer>
+
+
+
 </body>
+
+
 
 </html>

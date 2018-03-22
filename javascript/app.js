@@ -224,6 +224,6 @@ $(document).ready(function(){
  $(".btn-floating2").click(function() {
     $('html, body').animate({
         scrollTop: $("#bottom").offset().top
-    }, 2000);
+    }, 1500);
 });
 

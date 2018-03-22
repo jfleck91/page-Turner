@@ -12,40 +12,20 @@ var config = {
 firebase.initializeApp(config);
 database = firebase.database();
 
-var searchResult = [
-    /*
 
-
-      {
-          title: "Hello",
-          authors: ["Jake","Serge"],
-          publisher: "Warner Bros",
-          publishedDate: "2018",
-          pageCount: 456,
-          printedPageCount: 463,
-          imageLinks: {medium: "http://books.google.com/books/content?id=n14-2xhMz2cC&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE73KskaSd6-OaGfJ2ayNGEtJvQI9fD6CnP77tkLFEit_n1ok9omZVNqKoxxhxu_cMt8G5Xw36PQWGgYhFjPzluhW5IbcksPr1OJPcV2t2q6jbptOv1Pon8bznVKre5zFPkkotyXv&source=gbs_api"},
-          saleability: "Sale!",
-          retailPrice: "19.99",
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse gravida in augue sed gravida. Quisque magna elit, dictum id congue eu, gravida id purus. Ut libero justo, vulputate non sagittis et, lacinia nec enim. Nullam interdum elit sapien, id faucibus justo semper sed. Nullam eu blandit velit. Phasellus fringilla urna et ultricies rutrum. Praesent et tortor eu nibh vestibulum bibendum. Etiam a tincidunt lacus. Donec tincidunt mi luctus nunc scelerisque iaculis. Sed elementum vehicula ex, nec tristique felis vulputate sed. Ut laoreet tristique est non varius. Ut convallis feugiat ornare. Aliquam volutpat velit at nibh rhoncus, sit amet condimentum urna ultrices. Nunc molestie nunc in nisl viverra sollicitudin. Etiam bibendum hendrerit felis, id tincidunt augue laoreet sed. Vestibulum pellentesque mattis euismod. Quisque et urna sit amet orci accumsan egestas id fermentum neque.Duis ac porta est, eget imperdiet dolor. Sed enim mauris, tempor sit amet ex eget, maximus molestie augue. In tempor nulla tincidunt nisl sagittis feugiat. Duis cursus nibh eget diam luctus, nec sagittis arcu interdum. Fusce sit amet vehicula ex. Vivamus fermentum sollicitudin nibh, ac sodales arcu feugiat id. Sed vel scelerisque mauris, aliquet placerat mi. Donec hendrerit lorem eget interdum suscipit. Pellentesque tincidunt quis tortor sit amet sollicitudin. Nullam at maximus purus. Phasellus et iaculis lorem, a volutpat lectus. Pellentesque sed luctus magna. Sed quis suscipit orci, et dapibus est. In blandit vel neque nec suscipit. Curabitur sodales, elit a aliquam consectetur, nibh nisl euismod metus, a dapibus arcu nisl at urna. Praesent tempor ante nunc.        Donec congue luctus dui id dictum. Donec porta sapien eu blandit eleifend. Donec a malesuada urna. Nam eget turpis risus. In hac habitasse platea dictumst. Sed ullamcorper gravida enim, et feugiat nisl ornare eu. Aliquam eget mi bibendum, venenatis ante a, consectetur sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec scelerisque lorem et massa auctor facilisis. Curabitur tincidunt eu magna interdum tincidunt.Sed facilisis eget felis sed vehicula. Cras eget posuere sem. Donec purus quam, blandit sed justo sodales, aliquam congue purus. Aliquam lacinia nec diam non varius. Aenean eget ex ipsum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed aliquam est a urna fringilla, tempor mattis orci auctor. Maecenas sit amet molestie mi. Curabitur lobortis rhoncus metus, eget sollicitudin ex. Vestibulum feugiat euismod lectus, sed elementum orci vulputate vel. Donec imperdiet ipsum molestie leo vulputate egestas. Aliquam consectetur urna ac tincidunt euismod. Vestibulum eu ex ac metus malesuada ultrices."
-      },
-      {
-          title: "Hello",
-          authors: ["Jake","Serge"],
-          publisher: "Warner Bros",
-          publishedDate: "2018",
-          pageCount: 456,
-          printedPageCount: 463,
-          imageLinks: {medium: "http://books.google.com/books/content?id=n14-2xhMz2cC&printsec=frontcover&img=1&zoom=3&edge=curl&imgtk=AFLRE73KskaSd6-OaGfJ2ayNGEtJvQI9fD6CnP77tkLFEit_n1ok9omZVNqKoxxhxu_cMt8G5Xw36PQWGgYhFjPzluhW5IbcksPr1OJPcV2t2q6jbptOv1Pon8bznVKre5zFPkkotyXv&source=gbs_api"},
-          saleability: "Sale!",
-          retailPrice: "19.99",
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse gravida in augue sed gravida. Quisque magna elit, dictum id congue eu, gravida id purus. Ut libero justo, vulputate non sagittis et, lacinia nec enim. Nullam interdum elit sapien, id faucibus justo semper sed. Nullam eu blandit velit. Phasellus fringilla urna et ultricies rutrum. Praesent et tortor eu nibh vestibulum bibendum. Etiam a tincidunt lacus. Donec tincidunt mi luctus nunc scelerisque iaculis. Sed elementum vehicula ex, nec tristique felis vulputate sed. Ut laoreet tristique est non varius. Ut convallis feugiat ornare. Aliquam volutpat velit at nibh rhoncus, sit amet condimentum urna ultrices. Nunc molestie nunc in nisl viverra sollicitudin. Etiam bibendum hendrerit felis, id tincidunt augue laoreet sed. Vestibulum pellentesque mattis euismod. Quisque et urna sit amet orci accumsan egestas id fermentum neque.Duis ac porta est, eget imperdiet dolor. Sed enim mauris, tempor sit amet ex eget, maximus molestie augue. In tempor nulla tincidunt nisl sagittis feugiat. Duis cursus nibh eget diam luctus, nec sagittis arcu interdum. Fusce sit amet vehicula ex. Vivamus fermentum sollicitudin nibh, ac sodales arcu feugiat id. Sed vel scelerisque mauris, aliquet placerat mi. Donec hendrerit lorem eget interdum suscipit. Pellentesque tincidunt quis tortor sit amet sollicitudin. Nullam at maximus purus. Phasellus et iaculis lorem, a volutpat lectus. Pellentesque sed luctus magna. Sed quis suscipit orci, et dapibus est. In blandit vel neque nec suscipit. Curabitur sodales, elit a aliquam consectetur, nibh nisl euismod metus, a dapibus arcu nisl at urna. Praesent tempor ante nunc.        Donec congue luctus dui id dictum. Donec porta sapien eu blandit eleifend. Donec a malesuada urna. Nam eget turpis risus. In hac habitasse platea dictumst. Sed ullamcorper gravida enim, et feugiat nisl ornare eu. Aliquam eget mi bibendum, venenatis ante a, consectetur sem. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec scelerisque lorem et massa auctor facilisis. Curabitur tincidunt eu magna interdum tincidunt.Sed facilisis eget felis sed vehicula. Cras eget posuere sem. Donec purus quam, blandit sed justo sodales, aliquam congue purus. Aliquam lacinia nec diam non varius. Aenean eget ex ipsum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed aliquam est a urna fringilla, tempor mattis orci auctor. Maecenas sit amet molestie mi. Curabitur lobortis rhoncus metus, eget sollicitudin ex. Vestibulum feugiat euismod lectus, sed elementum orci vulputate vel. Donec imperdiet ipsum molestie leo vulputate egestas. Aliquam consectetur urna ac tincidunt euismod. Vestibulum eu ex ac metus malesuada ultrices."
-      }
-      */
+var searchResult = [  
 ];
+var amount = 6;
+///////////////////////////////////
+//    Generate the cards(books)  //
+// Does not need to be called    //
+// use intialSetupPagination     //
+///////////////////////////////////
+function generateItems(indexStart, length){
+    $("#cardDiv").empty();
+    for(var i = indexStart; i < indexStart+length;i++){
+        var value = searchResult[i];
 
-function generateItems() {
-    $("#searchResult").empty();
-    searchResult.forEach(function (value) {
         var source = $("#search-card-template").html();
         var template = Handlebars.compile(source);
         var context = {
@@ -74,12 +54,59 @@ function generateItems() {
         authors = authors.substring(0, authors.length - 2);
         context.author = authors;
         var html = template(context);
-        $("#searchResult").append($(html));
-    });
+        $("#cardDiv").append($(html));
+    };
+}
+////////////////////////////////////
+//      Setup Pagination          //
+// Run this for every ajax call   //
+////////////////////////////////////
+function initialSetupPagination(){
+    $(".pagination").css("display","block");
+    var numPages = Math.ceil(searchResult.length/amount);
+    
+    var pagesDynamic = $("#pages");
+    pagesDynamic.empty();
+    for(var i = 0; i < numPages; i++){
+        var pagIcon = $("<li class = 'wave-effect'><a href = '#'></a></li>");
+        pagIcon.children("a").text(i+1);
+        pagIcon.attr("data-index", i*6);
+        if(i==0){
+            pagIcon.removeClass("wave-effect");
+            pagIcon.addClass("active");
+        }
+        pagesDynamic.append(pagIcon);
+    }
+    if($("#pages li").length>1){
+        console.log("Greater")
+        $("#pag-next").removeClass("disabled");
+    }
+    var dataLength = amount;
+    if(searchResult.length < amount){
+        dataLength = searchResult.length-index;
+    }
+    generateItems(0, dataLength);
+}
+////////////////////////////////
+//  Left Right Chevron        //
+////////////////////////////////
+function leftRightChevronCheck(){
+    if($("#pages li").eq(0).hasClass("active")){
+        $("#pag-back").addClass("disabled");
+    }else{
+        $("#pag-back").removeClass("disabled");
+    }
+    if($("#pages li").eq($("#pages li").length-1).hasClass("active")){
+        $("#pag-next").addClass("disabled");
+    }else{
+        $("#pag-next").removeClass("disabled");
+    }
 }
 /*
+Testing
 generateItems();
 */
+initialSetupPagination();
 function runSearch() {
     //library of congress control num
     //isbn
@@ -147,7 +174,7 @@ function runSearch() {
         description = description.text(response.items[0].volumeInfo.description);
         $("#booksDiv").append(img);
         $("#booksDiv").append(description);
-    })
+    });
 }
 function generateQuery(field, html) {
     field = ":" + $("#" + field + "Form").val().trim();
@@ -185,3 +212,46 @@ $(".btn-floating2").click(function () {
         scrollTop: $("#bottom").offset().top
     }, 1500);
 });
+
+/////////////////////////////////////////////////
+//pagination buttons                           //
+/////////////////////////////////////////////////
+$(document).on("click", "#pages li:not(.active)", function(){
+    
+    var index = parseInt($(this).attr("data-index"));
+    var dataLength = 6;
+    if(searchResult.length-index < amount){
+        dataLength = searchResult.length-index;
+    }
+    generateItems(index, dataLength);
+    $("#pages").find(".active").addClass("wave-effect").removeClass("active");
+    $(this).removeClass("wave-effect").addClass("active");
+    leftRightChevronCheck();
+});
+$(document).on("click", "#pag-back:not(.disabled)",function(){
+    var indexElement = $("#pages li").index($("#pages li.active"))-1;
+    var dataIndex = parseInt($("#pages li").eq(indexElement).attr("data-index"));
+    var dataLength = 6;
+    if(searchResult.length-dataIndex < amount){
+        dataLength = searchResult.length-dataIndex;
+    }
+    generateItems(dataIndex, dataLength);
+    $("#pages").find(".active").addClass("wave-effect").removeClass("active");
+    $("#pages li").eq(indexElement).removeClass("wave-effect").addClass("active");
+    leftRightChevronCheck();
+});
+$(document).on("click", "#pag-next:not(.disabled)",function(){
+    var indexElement = $("#pages li").index($("#pages li.active"))+1;
+    var dataIndex = parseInt($("#pages li").eq(indexElement).attr("data-index"));
+    var dataLength = 6;
+    if(searchResult.length-dataIndex < amount){
+        dataLength = searchResult.length-dataIndex;
+    }
+    console.log(dataIndex);
+    console.log(dataLength);
+    generateItems(dataIndex, dataLength);
+    $("#pages").find(".active").addClass("wave-effect").removeClass("active");
+    $("#pages li").eq(indexElement).removeClass("wave-effect").addClass("active");
+    leftRightChevronCheck();
+});
+

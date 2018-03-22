@@ -11,11 +11,42 @@ var config = {
 };
 firebase.initializeApp(config);
 database = firebase.database();
-
+auth = firebase.auth();
 
 var searchResult = [
 ];
 var amount = 6;
+
+auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    //post html from the search form to give some sort of error message
+});
+
+auth.signInWithEmailAndPassword(email, password).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    //same as above
+});
+
+auth.onAuthStateChanged(function (user) {
+    if (user) {
+        // User is signed in.
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        var providerData = user.providerData;
+        // ...
+    } else {
+        // User is signed out.
+        // ...
+    }
+});
+
 ///////////////////////////////////
 //    Generate the cards(books)  //
 // Does not need to be called    //
@@ -192,23 +223,26 @@ function runSearch() {
                 searchResult.push(book);
             }
         });
-        var description = $("<p>");
-        img = $("<img>");
-        img = img.attr("src", response.items[0].volumeInfo.imageLinks.thumbnail);
-        console.log("image " + response.items[0].volumeInfo.imageLinks.thumbnail);
-        description = description.text(response.items[0].volumeInfo.description);
-        $("#booksDiv").append(img);
-        $("#booksDiv").append(description);
+        // var p = $("<p>");
+        // img = $("<img>");
+        // img = img.attr("src", book.imageLinks);
+        // console.log("image " + response.items[0].volumeInfo.imageLinks.thumbnail);
+        // $("#booksDiv").append(img);
+        // $("#booksDiv").append(book.description);
+        // $("#booksDiv").append(book.publishedDate);
+        // $("#booksDiv").append(book.)
     });
 }
-function generateQuery(field, html) {
-    field = ":" + $("#" + field + "Form").val().trim();
-}
+
 function resetForm() {
     //set text of form elements to be empty string
-    $("#titleForm").text("");
-    $("#authorForm").text("");
-    $("#subject").text("");
+    $("#titleField").text("");
+    $("#authorField").text("");
+    $("#subjectField").text("");
+    $("#publisherField").text("");
+    $("#isbnField").text("");
+    $("#lccnField").text("");
+    $("#oclcField").text("");
 }
 
 //testing runSearch filters

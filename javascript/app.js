@@ -61,32 +61,32 @@ function generateItems(indexStart, length) {
 //      Setup Pagination          //
 // Run this for every ajax call   //
 ////////////////////////////////////
-// function initialSetupPagination() {
-//     $(".pagination").css("display", "block");
-//     var numPages = Math.ceil(searchResult.length / amount);
+function initialSetupPagination() {
+    $(".pagination").css("display", "block");
+    var numPages = Math.ceil(searchResult.length / amount);
 
-//     var pagesDynamic = $("#pages");
-//     pagesDynamic.empty();
-//     for (var i = 0; i < numPages; i++) {
-//         var pagIcon = $("<li class = 'wave-effect'><a href = '#'></a></li>");
-//         pagIcon.children("a").text(i + 1);
-//         pagIcon.attr("data-index", i * 6);
-//         if (i == 0) {
-//             pagIcon.removeClass("wave-effect");
-//             pagIcon.addClass("active");
-//         }
-//         pagesDynamic.append(pagIcon);
-//     }
-//     if ($("#pages li").length > 1) {
-//         console.log("Greater")
-//         $("#pag-next").removeClass("disabled");
-//     }
-//     var dataLength = amount;
-//     if (searchResult.length < amount) {
-//         dataLength = searchResult.length - index;
-//     }
-//     generateItems(0, dataLength);
-// }
+    var pagesDynamic = $("#pages");
+    pagesDynamic.empty();
+    for (var i = 0; i < numPages; i++) {
+        var pagIcon = $("<li class = 'wave-effect'><a href = '#'></a></li>");
+        pagIcon.children("a").text(i + 1);
+        pagIcon.attr("data-index", i * 6);
+        if (i == 0) {
+            pagIcon.removeClass("wave-effect");
+            pagIcon.addClass("active");
+        }
+        pagesDynamic.append(pagIcon);
+    }
+    if ($("#pages li").length > 1) {
+        console.log("Greater")
+        $("#pag-next").removeClass("disabled");
+    }
+    var dataLength = amount;
+    if (searchResult.length < amount) {
+        dataLength = searchResult.length - index;
+    }
+    generateItems(0, dataLength);
+}
 ////////////////////////////////
 //  Left Right Chevron        //
 ////////////////////////////////

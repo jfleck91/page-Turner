@@ -67,7 +67,8 @@ function generateItems(indexStart, length) {
             price: value.retailPrice,
             shortDescription: "",
             longDescription: "",
-            author: ""
+            author: "",
+            dataIndex: i
         };
         shortDesc = "";
         if (value.description != null) {
@@ -116,7 +117,7 @@ function initialSetupPagination() {
     }
     var dataLength = amount;
     if (searchResult.length < amount) {
-        dataLength = searchResult.length - index;
+        dataLength = searchResult.length;
     }
     generateItems(0, dataLength);
 }
@@ -316,3 +317,10 @@ $(document).on("click", "#pag-next:not(.disabled)", function () {
     $("#pages li").eq(indexElement).removeClass("wave-effect").addClass("active");
     leftRightChevronCheck();
 });
+///////////////////////////////////////////////////////////////////
+//                  Book Card Click into Local Storage           //
+///////////////////////////////////////////////////////////////////
+$(document).on("click", "#card-image", function(){
+    
+});
+

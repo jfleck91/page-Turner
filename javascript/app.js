@@ -19,35 +19,35 @@ var amount = 6;
 var email;
 var password;
 
-auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    //post html from the search form to give some sort of error message
-});
+// auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
+//     // Handle Errors here.
+//     var errorCode = error.code;
+//     var errorMessage = error.message;
+//     //post html from the search form to give some sort of error message
+// });
 
-auth.signInWithEmailAndPassword(email, password).catch(function (error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    //same as above
-});
+// auth.signInWithEmailAndPassword(email, password).catch(function (error) {
+//     // Handle Errors here.
+//     var errorCode = error.code;
+//     var errorMessage = error.message;
+//     //same as above
+// });
 
-auth.onAuthStateChanged(function (user) {
-    if (user) {
-        // User is signed in.
-        var displayName = user.displayName;
-        var email = user.email;
-        var emailVerified = user.emailVerified;
-        var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
-        var providerData = user.providerData;
-        // ...
-    } else {
-        // User is signed out.
-        // ...
-    }
-});
+// auth.onAuthStateChanged(function (user) {
+//     if (user) {
+//         // User is signed in.
+//         var displayName = user.displayName;
+//         var email = user.email;
+//         var emailVerified = user.emailVerified;
+//         var isAnonymous = user.isAnonymous;
+//         var uid = user.uid;
+//         var providerData = user.providerData;
+//         // ...
+//     } else {
+//         // User is signed out.
+//         // ...
+//     }
+// });
 
 ///////////////////////////////////
 //    Generate the cards(books)  //
@@ -320,7 +320,6 @@ $(document).on("click", "#pag-next:not(.disabled)", function () {
 ///////////////////////////////////////////////////////////////////
 //                  Book Card Click into Local Storage           //
 ///////////////////////////////////////////////////////////////////
-$(document).on("click", "#card-image", function(){
-    
-});
+$(document).on("click", "#card-image", function () {
 
+});

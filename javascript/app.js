@@ -6,24 +6,57 @@ var config = {
     authDomain: "page-turner-198318.firebaseapp.com",
     databaseURL: "https://page-turner-198318.firebaseio.com",
     projectId: "page-turner-198318",
-    storageBucket: "",
+    storageBucket: "page-turner-198318.appspot.com",
     messagingSenderId: "246039286101"
 };
 firebase.initializeApp(config);
 database = firebase.database();
+auth = firebase.auth();
 
-var searchResult = [  
+var searchResult = [
 ];
 var amount = 6;
+
+auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    //post html from the search form to give some sort of error message
+});
+
+auth.signInWithEmailAndPassword(email, password).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    //same as above
+});
+
+auth.onAuthStateChanged(function (user) {
+    if (user) {
+        // User is signed in.
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        var providerData = user.providerData;
+        // ...
+    } else {
+        // User is signed out.
+        // ...
+    }
+});
+
 ///////////////////////////////////
 //    Generate the cards(books)  //
 // Does not need to be called    //
 // use intialSetupPagination     //
 ///////////////////////////////////
-function generateItems(indexStart, length){
+function generateItems(indexStart, length) {
     $("#cardDiv").empty();
-    for(var i = indexStart; i < indexStart+length;i++){
+    for (var i = indexStart; i < indexStart + length; i++) {
         var value = searchResult[i];
+
         var source = $("#search-card-template").html();
         var template = Handlebars.compile(source);
         var context = {
@@ -36,21 +69,21 @@ function generateItems(indexStart, length){
             dataIndex: i
         };
         shortDesc = "";
-        if(value.description!= null){
-            if(value.description.length > 100){
+        if (value.description != null) {
+            if (value.description.length > 100) {
                 shortDesc = value.description.substring(0, 100) + "...";
-            }else{
+            } else {
                 shortDesc = value.description;
             }
             context.shortDescription = shortDesc;
             context.longDescription = value.description;
         }
-  
+
         authors = "";
-        value.authors.forEach(function(authorName){
+        value.authors.forEach(function (authorName) {
             authors += authorName + ', ';
         });
-        authors = authors.substring(0, authors.length-2);
+        authors = authors.substring(0, authors.length - 2);
         context.author = authors;
         var html = template(context);
         $("#cardDiv").append($(html));
@@ -60,44 +93,44 @@ function generateItems(indexStart, length){
 //      Setup Pagination          //
 // Run this for every ajax call   //
 ////////////////////////////////////
-function initialSetupPagination(){
-    $(".pagination").css("display","block");
-    var numPages = Math.ceil(searchResult.length/amount);
-    
+function initialSetupPagination() {
+    $(".pagination").css("display", "block");
+    var numPages = Math.ceil(searchResult.length / amount);
+
     var pagesDynamic = $("#pages");
     pagesDynamic.empty();
-    for(var i = 0; i < numPages; i++){
+    for (var i = 0; i < numPages; i++) {
         var pagIcon = $("<li class = 'wave-effect'><a href = '#'></a></li>");
-        pagIcon.children("a").text(i+1);
-        pagIcon.attr("data-index", i*6);
-        if(i==0){
+        pagIcon.children("a").text(i + 1);
+        pagIcon.attr("data-index", i * 6);
+        if (i == 0) {
             pagIcon.removeClass("wave-effect");
             pagIcon.addClass("active");
         }
         pagesDynamic.append(pagIcon);
     }
-    if($("#pages li").length>1){
+    if ($("#pages li").length > 1) {
         console.log("Greater")
         $("#pag-next").removeClass("disabled");
     }
     var dataLength = amount;
-    if(searchResult.length < amount){
-        dataLength = searchResult.length-index;
+    if (searchResult.length < amount) {
+        dataLength = searchResult.length - index;
     }
     generateItems(0, dataLength);
 }
 ////////////////////////////////
 //  Left Right Chevron        //
 ////////////////////////////////
-function leftRightChevronCheck(){
-    if($("#pages li").eq(0).hasClass("active")){
+function leftRightChevronCheck() {
+    if ($("#pages li").eq(0).hasClass("active")) {
         $("#pag-back").addClass("disabled");
-    }else{
+    } else {
         $("#pag-back").removeClass("disabled");
     }
-    if($("#pages li").eq($("#pages li").length-1).hasClass("active")){
+    if ($("#pages li").eq($("#pages li").length - 1).hasClass("active")) {
         $("#pag-next").addClass("disabled");
-    }else{
+    } else {
         $("#pag-next").removeClass("disabled");
     }
 }
@@ -105,7 +138,7 @@ function leftRightChevronCheck(){
 Testing
 generateItems();
 */
-initialSetupPagination();
+// initialSetupPagination();
 function runSearch() {
     //library of congress control num
     //isbn
@@ -113,18 +146,48 @@ function runSearch() {
     //publisher
 
 
-    var title = ":" + $("#titleField").val().trim();
-    var author = ":" + $("#authorField").val().trim();
-    var subject = ":" + $("#subjectField").val().trim();
-    var publisher = ":" + $("#publisherField").val().trim();
-    var isbn = ":" + $("#isbnField").val().trim();
-    var lccn = ":" + $("#lccnField").val().trim();
-    var oclc = ":" + $("#oclcField").val().trim();
-    ///filter doesn't return the desired value just yet
-    var filter = $("input[name='filterGroup']:checked").val().toLowerCase().split(" ").join("-");
-    console.log(filter + " filter");
+    var title = $("#titleField").val().trim();
+    var author = $("#authorField").val().trim();
+    var subject = $("#subjectField").val().trim();
+    var publisher = $("#publisherField").val().trim();
+    var isbn = $("#isbnField").val().trim();
+    var lccn = $("#lccnField").val().trim();
+    var oclc = $("#oclcField").val().trim();
 
-    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=+intitle" + title + "+inauthor:" + author + "+ subject=" + subject + "&+" + isbn + "&key=" + googleBooksApiKey + "&maxresults=10&projection=lite&filter=" + filter;
+    var paidFilter = $("input:checked").filter("input[name='filterGroup']").next().text().toLowerCase().split(" ").join("-");
+    console.log(paidFilter + " filter");
+    var orderFilter = $("input:checked").filter("input[name='orderGroup']").next().text().toLowerCase();
+    var printFilter = $("input:checked").filter("input[name='printGroup']").next().text().toLowerCase();
+    console.log(orderFilter + " order filter");
+    console.log(printFilter + "print filter");
+    var queryURL = "https://www.googleapis.com/books/v1/volumes?q=+intitle:" + title + "+inauthor:" + author + "+subject: " + subject + "+inpublisher:" + publisher + "+isbn:" + isbn + "+lccn:" + lccn + "+oclc:" + oclc + "&key=" + googleBooksApiKey + "&maxresults=10&projection=lite&orderBy=" + orderFilter + "&printType=" + printFilter + "";
+    getURL();
+    function getURL() {
+        //reminder: add ":" before values in form
+        var formArr = [title, author, subject, publisher, isbn, lccn, oclc];
+        var key = ["+intitle:", "+inauthor:", "+subject:", "+inpublisher:", "+isbn:", "+lccn:", "+oclc:"]
+        console.log(queryURL);
+        //checkString function?
+        checkFilter();
+        for (var i = 0; i < formArr.length; i++) {
+            if (formArr[i] === undefined || formArr[i] === "") {
+                var str = key[i] + formArr[i];
+                console.log(str);
+                queryURL = queryURL.replace(str, "");
+                console.log("query URL after changes" + queryURL);
+            }
+
+
+        }
+        function checkFilter() {
+            if (paidFilter !== "none") {
+                queryURL = queryURL + "&filter=" + paidFilter;
+                console.log(queryURL);
+            }
+        }
+    }
+
+
 
 
     $.ajax({
@@ -135,8 +198,8 @@ function runSearch() {
         console.log(queryURL);
 
         searchResult = [];
-        response.items.forEach(function(value){
-            if(value.saleInfo.saleability=="FOR_SALE"){
+        response.items.forEach(function (value) {
+            if (value.saleInfo.saleability == "FOR_SALE") {
                 var book = {
                     title: value.volumeInfo.title,
                     authors: value.volumeInfo.authors,
@@ -148,40 +211,43 @@ function runSearch() {
                     retailPrice: value.saleInfo.retailPrice.amount,
                     buylink: value.saleInfo.buylink
                 };
-                if(value.volumeInfo.hasOwnProperty("description")){
+                if (value.volumeInfo.hasOwnProperty("description")) {
                     book.description = value.volumeInfo.description;
-                }else{
+                } else {
                     book.description = null;
                 }
-                if(value.volumeInfo.hasOwnProperty("industryIdentifiers")){
+                if (value.volumeInfo.hasOwnProperty("industryIdentifiers")) {
                     book.industryIdentifiers = value.volumeInfo.industryIdentifiers;
-                }else{
+                } else {
                     book.industryIdentifiers = null;
                 }
                 searchResult.push(book);
-            } 
+            }
         });
-        var description = $("<p>");
-        img = $("<img>");
-        img = img.attr("src", response.items[0].volumeInfo.imageLinks.thumbnail);
-        console.log("image " + response.items[0].volumeInfo.imageLinks.thumbnail);
-        description = description.text(response.items[0].volumeInfo.description);
-        $("#booksDiv").append(img);
-        $("#booksDiv").append(description);
+        // var p = $("<p>");
+        // img = $("<img>");
+        // img = img.attr("src", book.imageLinks);
+        // console.log("image " + response.items[0].volumeInfo.imageLinks.thumbnail);
+        // $("#booksDiv").append(img);
+        // $("#booksDiv").append(book.description);
+        // $("#booksDiv").append(book.publishedDate);
+        // $("#booksDiv").append(book.)
     });
 }
-function generateQuery(field, html) {
-    field = ":" + $("#" + field + "Form").val().trim();
-}
+
 function resetForm() {
     //set text of form elements to be empty string
-    $("#titleForm").text("");
-    $("#authorForm").text("");
-    $("#subject").text("");
+    $("#titleField").text("");
+    $("#authorField").text("");
+    $("#subjectField").text("");
+    $("#publisherField").text("");
+    $("#isbnField").text("");
+    $("#lccnField").text("");
+    $("#oclcField").text("");
 }
 
 //testing runSearch filters
-setTimeout(runSearch, 10000);
+$("#submitSearch").click(runSearch);
 $(document).ready(function () {
     $(".button-collapse").sideNav();
 });
@@ -194,51 +260,52 @@ $("#advanceSearchColumn .collapsible-header").on("click", function () {
     }
 });
 
-$('.carousel.carousel-slider').carousel({fullWidth: true});
+$('.carousel.carousel-slider').carousel({ fullWidth: true });
 
-$(document).ready(function(){
-    $('.carousel').carousel({dist:0});
-    window.setInterval(function(){$('.carousel').carousel('next')},5000)
- });
+$(document).ready(function () {
+    $('.carousel').carousel({ dist: 0 });
+    window.setInterval(function () { $('.carousel').carousel('next') }, 5000)
+});
 
- $(".btn-floating2").click(function() {
+$(".btn-floating2").click(function () {
     $('html, body').animate({
         scrollTop: $("#bottom").offset().top
-    }, 2000);
+    }, 1500);
 });
+
 /////////////////////////////////////////////////
 //pagination buttons                           //
 /////////////////////////////////////////////////
-$(document).on("click", "#pages li:not(.active)", function(){
-    
+$(document).on("click", "#pages li:not(.active)", function () {
+
     var index = parseInt($(this).attr("data-index"));
     var dataLength = 6;
-    if(searchResult.length-index < amount){
-        dataLength = searchResult.length-index;
+    if (searchResult.length - index < amount) {
+        dataLength = searchResult.length - index;
     }
     generateItems(index, dataLength);
     $("#pages").find(".active").addClass("wave-effect").removeClass("active");
     $(this).removeClass("wave-effect").addClass("active");
     leftRightChevronCheck();
 });
-$(document).on("click", "#pag-back:not(.disabled)",function(){
-    var indexElement = $("#pages li").index($("#pages li.active"))-1;
+$(document).on("click", "#pag-back:not(.disabled)", function () {
+    var indexElement = $("#pages li").index($("#pages li.active")) - 1;
     var dataIndex = parseInt($("#pages li").eq(indexElement).attr("data-index"));
     var dataLength = 6;
-    if(searchResult.length-dataIndex < amount){
-        dataLength = searchResult.length-dataIndex;
+    if (searchResult.length - dataIndex < amount) {
+        dataLength = searchResult.length - dataIndex;
     }
     generateItems(dataIndex, dataLength);
     $("#pages").find(".active").addClass("wave-effect").removeClass("active");
     $("#pages li").eq(indexElement).removeClass("wave-effect").addClass("active");
     leftRightChevronCheck();
 });
-$(document).on("click", "#pag-next:not(.disabled)",function(){
-    var indexElement = $("#pages li").index($("#pages li.active"))+1;
+$(document).on("click", "#pag-next:not(.disabled)", function () {
+    var indexElement = $("#pages li").index($("#pages li.active")) + 1;
     var dataIndex = parseInt($("#pages li").eq(indexElement).attr("data-index"));
     var dataLength = 6;
-    if(searchResult.length-dataIndex < amount){
-        dataLength = searchResult.length-dataIndex;
+    if (searchResult.length - dataIndex < amount) {
+        dataLength = searchResult.length - dataIndex;
     }
     console.log(dataIndex);
     console.log(dataLength);
@@ -253,3 +320,4 @@ $(document).on("click", "#pag-next:not(.disabled)",function(){
 $(document).on("click", "#card-image", function(){
     
 });
+

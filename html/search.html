@@ -192,25 +192,37 @@
                         </div>
                     </li>
                 </ul>
+                <button id="submitSearch" class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+
             </div>
             <div class="col s8" id="searchResult">
-                <div id = "cardDiv">
+                <div id="cardDiv">
 
                 </div>
-                <div id = "paginationDiv">
-                    <ul class = "pagination">
-                        <li class="disabled" id = "pag-back"><a href="#"><i class="material-icons">chevron_left</i></a></li>
-                        <span id = "pages">
+                <div id="paginationDiv">
+                    <ul class="pagination">
+                        <li class="disabled" id="pag-back">
+                            <a href="#">
+                                <i class="material-icons">chevron_left</i>
+                            </a>
+                        </li>
+                        <span id="pages">
                         </span>
-                        <li class="disabled" id = "pag-next"><a href="#"><i class="material-icons">chevron_right</i></a></li>
+                        <li class="disabled" id="pag-next">
+                            <a href="#">
+                                <i class="material-icons">chevron_right</i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    
-    <script id = "search-card-template" type = "text/x-handlebars-template">
+
+    <script id="search-card-template" type="text/x-handlebars-template">
         <div class = "col m4 s6">
             <div class="card">
                 <div class="card-image" data-index = "{{dataIndex}}">

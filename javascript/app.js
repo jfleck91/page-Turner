@@ -17,6 +17,7 @@ var searchResult = [
 ];
 var amount = 6;
 
+
 var email;
 var password;
 
@@ -53,6 +54,23 @@ var password;
 // });
 
 
+/*
+auth.onAuthStateChanged(function (user) {
+    if (user) {
+        // User is signed in.
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        var providerData = user.providerData;
+        // ...
+    } else {
+        // User is signed out.
+        // ...
+    }
+});
+*/
 
 ///////////////////////////////////
 //    Generate the cards(books)  //
@@ -67,7 +85,7 @@ function generateItems(indexStart, length) {
         var source = $("#search-card-template").html();
         var template = Handlebars.compile(source);
         var context = {
-            imageSrc: value.imageLinks.medium,
+            imageSrc: value.imageLinks.thumbnail,
             title: value.title,
             price: value.retailPrice,
             shortDescription: "",
@@ -103,7 +121,7 @@ function generateItems(indexStart, length) {
 function initialSetupPagination() {
     $(".pagination").css("display", "block");
     var numPages = Math.ceil(searchResult.length / amount);
-
+    console.log(numPages);
     var pagesDynamic = $("#pages");
     pagesDynamic.empty();
     for (var i = 0; i < numPages; i++) {
@@ -207,7 +225,7 @@ function runSearch() {
 
         searchResult = [];
         response.items.forEach(function (value) {
-            if (value.saleInfo.saleability == "FOR_SALE") {
+            if (value.saleInfo.hasOwnProperty("listPrice")) {
                 var book = {
                     title: value.volumeInfo.title,
                     authors: value.volumeInfo.authors,
@@ -232,6 +250,7 @@ function runSearch() {
                 searchResult.push(book);
             }
         });
+        initialSetupPagination();
         // var p = $("<p>");
         // img = $("<img>");
         // img = img.attr("src", book.imageLinks);
@@ -323,8 +342,13 @@ $(document).on("click", "#pag-next:not(.disabled)", function () {
     leftRightChevronCheck();
 });
 ///////////////////////////////////////////////////////////////////
-//                  Book Card Click into Local Storage           //
+//              Book Card Click into Local Storage               //
 ///////////////////////////////////////////////////////////////////
-$(document).on("click", "#card-image", function () {
 
+$(document).on("click", ".card-image", function(){
+    console.log("hello");
+    var indexValue = parseInt($(this).attr("data-index"));
+    localStorage.setItem("bookInfo", JSON.stringify(searchResult[indexValue]));
+    open("./book.html","_self");
 });
+

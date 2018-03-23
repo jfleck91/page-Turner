@@ -16,6 +16,8 @@ auth = firebase.auth();
 var searchResult = [
 ];
 var amount = 6;
+var email;
+var password;
 
 auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
     // Handle Errors here.
@@ -184,6 +186,7 @@ function runSearch() {
                 console.log(queryURL);
             }
         }
+        resetForm();
     }
 
 

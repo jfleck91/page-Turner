@@ -55,7 +55,7 @@
                 <span id="numberResults"></span> results</h4>
         </div>
         <div class="row">
-            <div class="col s4" id="advanceSearch">
+            <div class="col s12 l4" id="advanceSearch">
 
                 <ul class="collapsible white" data-collapsible="expandable" id="advanceSearchColumn">
                     <li class="active">
@@ -197,10 +197,15 @@
                 </button>
 
             </div>
-            <div class="col s8" id="searchResult">
+            <div class="col s12 l8" id="searchResult">
                 <div id="cardDiv">
 
                 </div>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col s12 l4"></div>
+            <div class = "col s12 l8">
                 <div id="paginationDiv">
                     <ul class="pagination">
                         <li class="disabled" id="pag-back">
@@ -223,10 +228,10 @@
 
 
     <script id="search-card-template" type="text/x-handlebars-template">
-        <div class = "col m4 s6">
+        <div class = "col m6 s12 xl4">
             <div class="card">
                 <div class="card-image" data-index = "{{dataIndex}}">
-                    <img src="{{imageSrc}}">
+                    <a href = "#"><img src="{{imageSrc}}"></a>
                 </div>
                 <div class="card-content">
                     <span class = "card-title activator">{{title}}<i class="material-icons right">more_vert</i></span>

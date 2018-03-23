@@ -16,7 +16,7 @@ auth = firebase.auth();
 var searchResult = [
 ];
 var amount = 6;
-
+/* 
 auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
@@ -46,7 +46,7 @@ auth.onAuthStateChanged(function (user) {
         // ...
     }
 });
-
+*/
 ///////////////////////////////////
 //    Generate the cards(books)  //
 // Does not need to be called    //
@@ -60,7 +60,7 @@ function generateItems(indexStart, length) {
         var source = $("#search-card-template").html();
         var template = Handlebars.compile(source);
         var context = {
-            imageSrc: value.imageLinks.medium,
+            imageSrc: value.imageLinks.thumbnail,
             title: value.title,
             price: value.retailPrice,
             shortDescription: "",
@@ -96,7 +96,7 @@ function generateItems(indexStart, length) {
 function initialSetupPagination() {
     $(".pagination").css("display", "block");
     var numPages = Math.ceil(searchResult.length / amount);
-
+    console.log(numPages);
     var pagesDynamic = $("#pages");
     pagesDynamic.empty();
     for (var i = 0; i < numPages; i++) {
@@ -199,7 +199,7 @@ function runSearch() {
 
         searchResult = [];
         response.items.forEach(function (value) {
-            if (value.saleInfo.saleability == "FOR_SALE") {
+            if (value.saleInfo.hasOwnProperty("listPrice")) {
                 var book = {
                     title: value.volumeInfo.title,
                     authors: value.volumeInfo.authors,
@@ -224,6 +224,7 @@ function runSearch() {
                 searchResult.push(book);
             }
         });
+        initialSetupPagination();
         // var p = $("<p>");
         // img = $("<img>");
         // img = img.attr("src", book.imageLinks);
@@ -315,9 +316,12 @@ $(document).on("click", "#pag-next:not(.disabled)", function () {
     leftRightChevronCheck();
 });
 ///////////////////////////////////////////////////////////////////
-//                  Book Card Click into Local Storage           //
+//              Book Card Click into Local Storage               //
 ///////////////////////////////////////////////////////////////////
-$(document).on("click", "#card-image", function(){
-    
+$(document).on("click", ".card-image", function(){
+    console.log("hello");
+    var indexValue = parseInt($(this).attr("data-index"));
+    localStorage.setItem("bookInfo", JSON.stringify(searchResult[indexValue]));
+    open("./book.html","_self");
 });
 

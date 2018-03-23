@@ -32,7 +32,8 @@ function generateItems(indexStart, length){
             price: value.retailPrice,
             shortDescription: "",
             longDescription: "",
-            author: ""
+            author: "",
+            dataIndex: i
         };
         shortDesc = "";
         if(value.description!= null){
@@ -245,4 +246,10 @@ $(document).on("click", "#pag-next:not(.disabled)",function(){
     $("#pages").find(".active").addClass("wave-effect").removeClass("active");
     $("#pages li").eq(indexElement).removeClass("wave-effect").addClass("active");
     leftRightChevronCheck();
+});
+///////////////////////////////////////////////////////////////////
+//                  Book Card Click into Local Storage           //
+///////////////////////////////////////////////////////////////////
+$(document).on("click", "#card-image", function(){
+    
 });

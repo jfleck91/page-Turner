@@ -16,6 +16,7 @@ auth = firebase.auth();
 var searchResult = [
 ];
 var amount = 6;
+
 var email;
 var password;
 
@@ -26,12 +27,14 @@ var password;
 //     //post html from the search form to give some sort of error message
 // });
 
+
 // auth.signInWithEmailAndPassword(email, password).catch(function (error) {
 //     // Handle Errors here.
 //     var errorCode = error.code;
 //     var errorMessage = error.message;
 //     //same as above
 // });
+
 
 // auth.onAuthStateChanged(function (user) {
 //     if (user) {
@@ -48,6 +51,8 @@ var password;
 //         // ...
 //     }
 // });
+
+
 
 ///////////////////////////////////
 //    Generate the cards(books)  //

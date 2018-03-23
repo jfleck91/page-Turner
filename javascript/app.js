@@ -115,7 +115,7 @@ function initialSetupPagination() {
     }
     var dataLength = amount;
     if (searchResult.length < amount) {
-        dataLength = searchResult.length - index;
+        dataLength = searchResult.length;
     }
     generateItems(0, dataLength);
 }

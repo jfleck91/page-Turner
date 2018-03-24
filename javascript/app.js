@@ -334,6 +334,9 @@ $(document).on("click", "#pag-next:not(.disabled)", function () {
 ///////////////////////////////////////////////////////////////////
 //                  Book Card Click into Local Storage           //
 ///////////////////////////////////////////////////////////////////
-$(document).on("click", "#card-image", function () {
-
+$(document).on("click", ".card-image", function(){
+    console.log("hello");
+    var indexValue = parseInt($(this).attr("data-index"));
+    localStorage.setItem("bookInfo", JSON.stringify(searchResult[indexValue]));
+    open("./book.html","_self");
 });

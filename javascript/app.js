@@ -13,6 +13,9 @@ firebase.initializeApp(config);
 database = firebase.database();
 auth = firebase.auth();
 
+
+
+
 var searchResult = [
 ];
 var amount = 6;

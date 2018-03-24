@@ -17,7 +17,6 @@ var searchResult = [
 ];
 var amount = 6;
 
-
 var email;
 var password;
 
@@ -54,23 +53,6 @@ var password;
 // });
 
 
-/*
-auth.onAuthStateChanged(function (user) {
-    if (user) {
-        // User is signed in.
-        var displayName = user.displayName;
-        var email = user.email;
-        var emailVerified = user.emailVerified;
-        var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
-        var providerData = user.providerData;
-        // ...
-    } else {
-        // User is signed out.
-        // ...
-    }
-});
-*/
 
 ///////////////////////////////////
 //    Generate the cards(books)  //
@@ -121,7 +103,7 @@ function generateItems(indexStart, length) {
 function initialSetupPagination() {
     $(".pagination").css("display", "block");
     var numPages = Math.ceil(searchResult.length / amount);
-    console.log(numPages);
+
     var pagesDynamic = $("#pages");
     pagesDynamic.empty();
     for (var i = 0; i < numPages; i++) {
@@ -225,7 +207,7 @@ function runSearch() {
 
         searchResult = [];
         var amountResult = 0;
-        if(response.hasOwnProperty("items")){
+        if (response.hasOwnProperty("items")) {
             amountResult = response.items.length;
             response.items.forEach(function (value) {
 
@@ -252,7 +234,7 @@ function runSearch() {
                         book.industryIdentifiers = null;
                     }
                     searchResult.push(book);
-                }else{
+                } else {
                     amountResult--;
                 }
             });
@@ -293,6 +275,19 @@ $("#advanceSearchColumn .collapsible-header").on("click", function () {
     } else {
         $(this).find("i").text("keyboard_arrow_up");
     }
+});
+
+$('.carousel.carousel-slider').carousel({ fullWidth: true });
+
+$(document).ready(function () {
+    $('.carousel').carousel({ dist: 0 });
+    window.setInterval(function () { $('.carousel').carousel('next') }, 5000)
+});
+
+$(".btn-floating2").click(function () {
+    $('html, body').animate({
+        scrollTop: $("#bottom").offset().top
+    }, 1500);
 });
 
 /////////////////////////////////////////////////
@@ -337,13 +332,8 @@ $(document).on("click", "#pag-next:not(.disabled)", function () {
     leftRightChevronCheck();
 });
 ///////////////////////////////////////////////////////////////////
-//              Book Card Click into Local Storage               //
+//                  Book Card Click into Local Storage           //
 ///////////////////////////////////////////////////////////////////
+$(document).on("click", "#card-image", function () {
 
-$(document).on("click", ".card-image", function(){
-    console.log("hello");
-    var indexValue = parseInt($(this).attr("data-index"));
-    localStorage.setItem("bookInfo", JSON.stringify(searchResult[indexValue]));
-    open("./book.html","_self");
 });
-

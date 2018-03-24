@@ -1,3 +1,11 @@
+//book js page
+//add code here
+function tweetBookInfo() {
+	var twitterURL = "https://twitter.com/intent/tweet?text=" + bookInfo;
+	var bookInfo = $("#bookinfo").text();
+}
+
+
 
 $(document).ready(function() {
     var bookString = localStorage.getItem("bookInfo");
@@ -14,3 +22,4 @@ $(document).ready(function() {
     }
     $("#buyLink").attr("href", bookObject.buyLink);
 });
+

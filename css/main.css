@@ -89,7 +89,7 @@
 }
 
 .bookimg{
-    margin-top: 70px;
+    margin-top: 50px;
     text-align: center;
     margin-left: 30px
     }
@@ -101,14 +101,14 @@
     
 
 #buyLink{
-   margin-top: 10px;
+   margin-top: -20px;
    text-align: center;
    
 }
 
 .bookinfo{
 
-    margin-top: 40px;
+    margin-top: 30px;
     max-height: 2000px;
     border-radius: 10px;
     text-align: center;
@@ -120,7 +120,8 @@
 .twitter-share-button{
     
     text-align: center;
-    margin-top: 20px;
+    margin-top: -80px;
+    margin-bottom: 10px;
 }
 
 .card-title{
@@ -148,5 +149,7 @@
     display: block;
 }
 
-
-
+.counter{
+    margin-top: -15px;
+    text-align: center;
+}

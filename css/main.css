@@ -95,30 +95,32 @@
     }
 
 #bookImage{
-    height: 300px;
+    height: 350px;
     text-align: center;
     }
     
 
-.bookbuy{
-   margin-top: -105px;
+#buyLink{
+   margin-top: 10px;
    text-align: center;
    
 }
 
 .bookinfo{
-    max-height: 700px;
+
     margin-top: 40px;
+    max-height: 2000px;
     border-radius: 10px;
     text-align: center;
     background-color: white;
+    margin-bottom: 20px;
    
 }
 
-.twitter{
-    margin-top: -40px;
+.twitter-share-button{
+    
     text-align: center;
-
+    margin-top: 20px;
 }
 
 .card-title{

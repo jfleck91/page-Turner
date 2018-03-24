@@ -130,7 +130,8 @@ function initialSetupPagination() {
     generateItems(0, dataLength);
 }
 ////////////////////////////////
-//  Left Right Chevron        //
+//  Left Right Chevron  icon  //
+//    for pagination          //
 ////////////////////////////////
 function leftRightChevronCheck() {
     if ($("#pages li").eq(0).hasClass("active")) {
@@ -144,11 +145,11 @@ function leftRightChevronCheck() {
         $("#pag-next").removeClass("disabled");
     }
 }
-/*
-Testing
-generateItems();
-*/
-// initialSetupPagination();
+/////////////////////////////////////////
+//     Ajax request:                   //
+//        query creation               //
+//        object creation              //
+/////////////////////////////////////////
 function runSearch() {
 
     var title = $("#titleField").val().trim();
@@ -261,9 +262,17 @@ function resetForm() {
     $("#oclcField").text("");
 }
 
-//testing runSearch filters
+///////////////////////////////////////
+//       Click Event for Submit      //
+///////////////////////////////////////
 $("#submitSearch").click(runSearch);
+///////////////////////////////////////
+//         Ready function            //
+//  Check for search string in       //
+//  session storage                  //
+///////////////////////////////////////
 $(document).ready(function () {
+
     $(".button-collapse").sideNav();
     var qSearch = sessionStorage.getItem("query");
     if(qSearch.length > 0){
@@ -272,6 +281,9 @@ $(document).ready(function () {
     }
     sessionStorage.setItem("query", "");
 });
+///////////////////////////////////////
+//    Collapsible Icon change        //
+///////////////////////////////////////
 $("#advanceSearchColumn .collapsible-header").on("click", function () {
     var iconText = $(this).find("i").text();
     if (iconText == "keyboard_arrow_up") {
@@ -280,18 +292,27 @@ $("#advanceSearchColumn .collapsible-header").on("click", function () {
         $(this).find("i").text("keyboard_arrow_up");
     }
 });
+//////////////////////////////////////
+//       Key listener for           //
+//       search field in nav        //
+//////////////////////////////////////
 $(document).on("keyup", function(e){
     if((e.key === "Enter")&& $("#querySearch").val().length > 0){
         //console.log("#querySearch");
         $("#titleField").val($("#querySearch").val());
         $("#querySearch").val("");
-        runSearch();
-       
+        runSearch();  
     }
 });
-
-
-
+///////////////////////////////////////////
+//          Input Changed Handler        //
+///////////////////////////////////////////
+$("#querySearch2").on("input", function(){
+    $("#querySearch").val($("#querySearch2").val());
+});
+$("#querySearch").on("input", function(){
+    $("#querySearch2").val($("#querySearch").val());
+});
 /////////////////////////////////////////////////
 //pagination buttons                           //
 /////////////////////////////////////////////////

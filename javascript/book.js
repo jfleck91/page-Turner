@@ -22,6 +22,11 @@ auth = firebase.auth();
 
 
 $(document).ready(function() {
+    $(".button-collapse").sideNav();
+    ////////////////////////////////////////
+    //    Populate the page with data     //
+    //    from local storage              //
+    ////////////////////////////////////////
     var bookString = localStorage.getItem("bookInfo");
     var bookObject = JSON.parse(bookString);
     $("#bookImage").attr("src", bookObject.imageLinks.thumbnail);
@@ -35,8 +40,12 @@ $(document).ready(function() {
         $("#description").text(bookObject.description);
     }
     $("#buyLink").attr("href", bookObject.buyLink);
-
+    ////////////////////////////////////////
+    //    Get amount specific book has    //
+    //    been viewed globally            //
+    ////////////////////////////////////////
     database.ref().once('value', function(snapshot){
+        var numberVisits = 0;
         if(snapshot.child(bookObject.title).exists()){
             var count2 = snapshot.child(bookObject.title).val().count;
             console.log(count2);
@@ -45,13 +54,41 @@ $(document).ready(function() {
                 count: count2 +1
             }
             database.ref().update(object);
+            numberVisits = count2+1;
         }else{
             var object = {};
             object[bookObject.title] = {
                 count: 1
             }
             database.ref().update(object);
+            numberVisits = 1;
         }
     });
 });
 
+///////////////////////////////////////////
+//      Store search to session storage  //
+///////////////////////////////////////////
+function addSessionStorage(query){
+    sessionStorage.setItem("query", query);
+    open("./search.html", "_self");
+}
+///////////////////////////////////////////
+//          Input Changed Handler        //
+///////////////////////////////////////////
+$("#querySearch2").on("input", function(){
+    $("#querySearch").val($("#querySearch2").val());
+});
+$("#querySearch").on("input", function(){
+    $("#querySearch2").val($("#querySearch").val());
+});
+//////////////////////////////////////////
+//      Key Handler for Search Field    //
+//////////////////////////////////////////
+$(document).on("keyup", function(e){
+    if(e.key === "Enter"){
+        if($("#querySearch").val().length > 0){
+            addSessionStorage($("#querySearch").val());
+        }
+    }
+});

@@ -147,11 +147,6 @@ generateItems();
 */
 // initialSetupPagination();
 function runSearch() {
-    //library of congress control num
-    //isbn
-    // Online Computer Library Center Number
-    //publisher
-
 
     var title = $("#titleField").val().trim();
     var author = $("#authorField").val().trim();
@@ -196,7 +191,7 @@ function runSearch() {
     }
 
 
-
+    queryURL += "&maxResults=40";
 
     $.ajax({
         url: queryURL,
@@ -267,6 +262,12 @@ function resetForm() {
 $("#submitSearch").click(runSearch);
 $(document).ready(function () {
     $(".button-collapse").sideNav();
+    var qSearch = sessionStorage.getItem("query");
+    if(qSearch.length > 0){
+        $("#titleField").val(qSearch);
+        runSearch();
+    }
+    sessionStorage.setItem("query", "");
 });
 $("#advanceSearchColumn .collapsible-header").on("click", function () {
     var iconText = $(this).find("i").text();
@@ -276,19 +277,17 @@ $("#advanceSearchColumn .collapsible-header").on("click", function () {
         $(this).find("i").text("keyboard_arrow_up");
     }
 });
-
-$('.carousel.carousel-slider').carousel({ fullWidth: true });
-
-$(document).ready(function () {
-    $('.carousel').carousel({ dist: 0 });
-    window.setInterval(function () { $('.carousel').carousel('next') }, 5000)
+$(document).on("keyup", function(e){
+    if((e.key === "Enter")&& $("#querySearch").val().length > 0){
+        //console.log("#querySearch");
+        $("#titleField").val($("#querySearch").val());
+        $("#querySearch").val("");
+        runSearch();
+       
+    }
 });
 
-$(".btn-floating2").click(function () {
-    $('html, body').animate({
-        scrollTop: $("#bottom").offset().top
-    }, 1500);
-});
+
 
 /////////////////////////////////////////////////
 //pagination buttons                           //

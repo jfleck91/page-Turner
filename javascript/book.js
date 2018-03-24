@@ -9,4 +9,8 @@ $(document).ready(function() {
         authors += authorName + ', ';
     });
     $("#authors").text(authors);
+    if(bookObject.description){
+        $("#description").text(bookObject.description);
+    }
+    $("#buyLink").attr("href", bookObject.buyLink);
 });

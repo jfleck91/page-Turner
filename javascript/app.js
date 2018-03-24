@@ -206,6 +206,7 @@ function runSearch() {
         console.log(queryURL);
 
         searchResult = [];
+<<<<<<< HEAD
         response.items.forEach(function (value) {
             if (value.saleInfo.saleability == "FOR_SALE") {
                 var book = {
@@ -232,6 +233,43 @@ function runSearch() {
                 searchResult.push(book);
             }
         });
+=======
+        var amountResult = 0;
+        if(response.hasOwnProperty("items")){
+            amountResult = response.items.length;
+            response.items.forEach(function (value) {
+
+                if (value.saleInfo.hasOwnProperty("listPrice")) {
+                    var book = {
+                        title: value.volumeInfo.title,
+                        authors: value.volumeInfo.authors,
+                        publisher: value.volumeInfo.publisher,
+                        publishedDate: value.volumeInfo.publishedDate,
+                        pageCount: value.volumeInfo.pageCount,
+                        printedPageCount: value.volumeInfo.printedPageCount,
+                        imageLinks: value.volumeInfo.imageLinks,
+                        retailPrice: value.saleInfo.retailPrice.amount,
+                        buylink: value.saleInfo.buylink
+                    };
+                    if (value.volumeInfo.hasOwnProperty("description")) {
+                        book.description = value.volumeInfo.description;
+                    } else {
+                        book.description = null;
+                    }
+                    if (value.volumeInfo.hasOwnProperty("industryIdentifiers")) {
+                        book.industryIdentifiers = value.volumeInfo.industryIdentifiers;
+                    } else {
+                        book.industryIdentifiers = null;
+                    }
+                    searchResult.push(book);
+                }else{
+                    amountResult--;
+                }
+            });
+            $("#numberResults").text(amountResult);
+        }
+        initialSetupPagination();
+>>>>>>> 3f4571470ac8c09f53a176aa14ff558279574d75
         // var p = $("<p>");
         // img = $("<img>");
         // img = img.attr("src", book.imageLinks);

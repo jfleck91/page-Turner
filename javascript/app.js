@@ -67,7 +67,7 @@ function generateItems(indexStart, length) {
         var source = $("#search-card-template").html();
         var template = Handlebars.compile(source);
         var context = {
-            imageSrc: value.imageLinks.medium,
+            imageSrc: value.imageLinks.thumbnail,
             title: value.title,
             price: value.retailPrice,
             shortDescription: "",

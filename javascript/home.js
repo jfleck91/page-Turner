@@ -11,3 +11,7 @@ $(".btn-floating2").click(function () {
         scrollTop: $("#bottom").offset().top
     }, 1500);
 });
+
+$(document).on("keyup", function(e){
+    console.log(e.key);
+});

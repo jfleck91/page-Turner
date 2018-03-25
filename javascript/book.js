@@ -1,15 +1,13 @@
 //book js page
 //add code here
-function tweetBookInfo() {
-	var twitterURL = "https://twitter.com/intent/tweet?text=" + bookInfo;
-	var bookInfo = $("#bookinfo").attr("src") + $("#title").text() + $("#authors").text();
-}
-
+var bookString;
+var bookObject;
+var authors;
 
 
 $(document).ready(function () {
-	var bookString = localStorage.getItem("bookInfo");
-	var bookObject = JSON.parse(bookString);
+	bookString = localStorage.getItem("bookInfo");
+	bookObject = JSON.parse(bookString);
 	$("#bookImage").attr("src", bookObject.imageLinks.thumbnail);
 	$("#title").text(bookObject.title);
 	authors = "";
@@ -21,5 +19,13 @@ $(document).ready(function () {
 		$("#description").text(bookObject.description);
 	}
 	$("#buyLink").attr("href", bookObject.buyLink);
+	function tweetBookInfo() {
+		var bookInfo = bookObject.title;
+		var tweetBtn = $('<a></a>').addClass('twitter-share-button').attr('href', 'http://twitter.com/share').attr('data-url', bookObject.imageLinks.thumbnail).attr('data-text', authors + bookObject.title);
+		$('.twitter').append(tweetBtn);
+		twttr.widgets.load();
+
+
+	}
+	tweetBookInfo();
 });
-$("#twitter").click(tweetBookInfo);

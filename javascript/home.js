@@ -12,12 +12,29 @@ $(".btn-floating2").click(function () {
         scrollTop: $("#bottom").offset().top
     }, 1500);
 });
+///////////////////////////////////////////
+//      Store search to session storage  //
+///////////////////////////////////////////
 function addSessionStorage(query){
     sessionStorage.setItem("query", query);
     open("./html/search.html", "_self");
 }
+///////////////////////////////////////////
+//          Input Changed Handler        //
+///////////////////////////////////////////
+$("#querySearch2").on("input", function(){
+    $("#querySearch").val($("#querySearch2").val());
+});
+$("#querySearch").on("input", function(){
+    $("#querySearch2").val($("#querySearch").val());
+});
+//////////////////////////////////////////
+//      Key Handler for Search Field    //
+//////////////////////////////////////////
 $(document).on("keyup", function(e){
-    if((e.key === "Enter")&& $("#querySearch").val().length > 0){
-        addSessionStorage($("#querySearch").val());
+    if(e.key === "Enter"){
+        if($("#querySearch").val().length > 0){
+            addSessionStorage($("#querySearch").val());
+        }
     }
 });

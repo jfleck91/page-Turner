@@ -39,7 +39,8 @@ $(document).ready(function() {
     if(bookObject.description){
         $("#description").text(bookObject.description);
     }
-    $("#buyLink").attr("href", bookObject.buyLink);
+    $("#buyLink").attr("href", bookObject.buylink);
+    $("#buyLink").attr("target", "_blank");
     ////////////////////////////////////////
     //    Get amount specific book has    //
     //    been viewed globally            //

@@ -220,7 +220,7 @@ function runSearch() {
                         printedPageCount: value.volumeInfo.printedPageCount,
                         imageLinks: value.volumeInfo.imageLinks,
                         retailPrice: value.saleInfo.retailPrice.amount,
-                        buylink: value.saleInfo.buylink
+                        buylink: value.saleInfo.buyLink
                     };
                     if (value.volumeInfo.hasOwnProperty("description")) {
                         book.description = value.volumeInfo.description;

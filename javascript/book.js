@@ -63,7 +63,15 @@ $(document).ready(function() {
             database.ref().update(object);
             numberVisits = 1;
         }
-    });
+	});
+
+	function tweetBookInfo() {
+		var bookInfo = bookObject.title;
+		var tweetBtn = $('<a></a>').addClass('twitter-share-button').attr('href', 'http://twitter.com/share').attr('data-url', bookObject.imageLinks.thumbnail).attr('data-text', authors + bookObject.title);
+		$('.bookimg').prepend(tweetBtn);
+		twttr.widgets.load();
+    }
+    tweetBookInfo();
 });
 
 ///////////////////////////////////////////

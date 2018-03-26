@@ -29,6 +29,9 @@ auth.onAuthStateChanged(function(user) {
             $("#loginForm").addClass("noneDisplay");
             $("#signoutForm").removeClass("noneDisplay");
             $("#login, #login2").text(email);
+
+            $("#listDiv").empty();
+            
         }
     } else {
         $("#createForm").addClass("noneDisplay");

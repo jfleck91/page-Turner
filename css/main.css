@@ -180,4 +180,12 @@ footer{
 .noneDisplay{
     display: none;
 }
-
+#buyLink, #addWatch{
+    margin-bottom: 10px;
+}
+#buyLink{
+    display: block;
+}
+#addWatch{
+    display: none;
+}

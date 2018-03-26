@@ -39,6 +39,7 @@ auth.onAuthStateChanged(function(user) {
 function login(){
     var email = $("#email").val();
     var password = $("#password").val();
+    var error = false;
     auth.signInWithEmailAndPassword(email, password).catch(function (err){
         $("#email").val("");
         $("#password").val("");
@@ -47,10 +48,17 @@ function login(){
             html: err.message
         });
     });
+    if(!error){
+        var object = {
+            lastLoggedIn: Firebase.ServerValue.TIMESTAMP
+        };
+        database.ref("users/" + email.split(".")[0]).update(object);
+    }
 }
 function create(){
-    var email = $("#emailCreate").val();
+    var email = $("#emailCreate").val().trim();
     var password = $("#passwordCreate").val();
+    var error = false;
     auth.createUserWithEmailAndPassword(email, password).catch(function(err){
         $("#emailCreate").val("");
         $("#passwordCreate").val("");
@@ -58,9 +66,18 @@ function create(){
         M.toast({
             html: err.message
         });
-    }).then(function(){
-        console.log("hello");
+        error = true;
     });
+    if(!error){
+        var object = {};
+        object[email.split(".")[0]] = {
+            lastLoggedIn: Firebase.ServerValue.TIMESTAMP,
+            watchList: {
+                example: "nothing"
+            }
+        };
+        database.ref("users").update(object);
+    }
 }
 function logout(){
     auth.signOut().catch(function (err){

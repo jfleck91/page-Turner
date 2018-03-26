@@ -17,14 +17,26 @@ auth = firebase.auth();
 auth.onAuthStateChanged(function(user) {
     if (user) {
         console.log(user);
-    } else {
         
+        if(user!= null){
+            var email = user.email;
+            $("#currentEmail").text(email);
+            $("#createForm").addClass("noneDisplay");
+            $("#loginForm").addClass("noneDisplay");
+            $("#signoutForm").removeClass("noneDisplay");
+        }
+    } else {
+        $("#createForm").removeClass("noneDisplay");
+        $("#loginForm").addClass("noneDisplay");
+        $("#signoutForm").addClass("noneDisplay");
     }
 });
 function login(){
     var email = $("#email").val();
     var password = $("#password").val();
     auth.signInWithEmailAndPassword(email, password).catch(function (err){
+        $("#email").val("");
+        $("#password").val("");
         console.log(err);
     });
 }
@@ -32,15 +44,15 @@ function create(){
     var email = $("#emailCreate").val();
     var password = $("#passwordCreate").val();
     auth.createUserWithEmailAndPassword(email, password).catch(function(err){
+        $("#emailCreate").val("");
+        $("#passwordCreate").val("");
         console.log(err);
     });
 }
 function logout(){
-    auth.signOut().then(function (){
-
-    }).catch(function (err){
-
-    })
+    auth.signOut().catch(function (err){
+        console.log(err);
+    });
 }
 $("#createLink").on("click", function(){
     $("#loginForm").addClass("noneDisplay");
@@ -52,3 +64,4 @@ $("#loginLink").on("click", function(){
 });
 $("#createButton").on("click", create);
 $("#loginButton").on("click", login);
+$("#logoutButton").on("click",logout);

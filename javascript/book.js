@@ -104,5 +104,5 @@ $(document).on("keyup", function(e){
 });
 
 $("#login, #login2").on("click", function(){
-    open("./html/login.html", "_self");
+    open("./login.html", "_self");
 });

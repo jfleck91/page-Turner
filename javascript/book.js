@@ -19,6 +19,15 @@ firebase.initializeApp(config);
 database = firebase.database();
 auth = firebase.auth();
 
+auth.onAuthStateChanged(function(user) {
+    if (user) {
+        console.log(user);
+        if(user!= null){
+            var email = user.email;
+            $("#login, #login2").text(email);
+        }
+    }
+});
 
 
 $(document).ready(function() {

@@ -58,6 +58,8 @@ function create(){
         M.toast({
             html: err.message
         });
+    }).then(function(){
+        console.log("hello");
     });
 }
 function logout(){

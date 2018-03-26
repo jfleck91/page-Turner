@@ -156,5 +156,6 @@
 
 footer{
     background-color: rgb(63, 63, 63);
-    color: white
+    color: white;
+    font-size: 3px;
 }

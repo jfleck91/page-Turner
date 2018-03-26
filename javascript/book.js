@@ -25,11 +25,13 @@ auth.onAuthStateChanged(function(user) {
     if (user) {
         console.log(user);
         if(user!= null){
+            var bookString = localStorage.getItem("bookInfo");
+            var bookObject = JSON.parse(bookString);
             var email = user.email;
             $("#login, #login2").text(email);
             emailParse = email.split(".")[0];
             database.ref("users/" + emailParse + "/watchList").once("value", function(snapshot){
-                if($("#title").text() in snapshot){
+                if(bookObject.title in snapshot){
                     $("#addWatch").addClass("disabled");
                 }
             });
@@ -132,4 +134,5 @@ $(document).on("click", "#addWatch:not(.disabled)", function(){
     var data = {};
     data[bookObject.title] = bookObject;
     database.ref("users/" + emailParse + "/watchList").update(data);
+    $("#addWatch").addClass("disabled");
 });

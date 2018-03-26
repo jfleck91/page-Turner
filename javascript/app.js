@@ -362,3 +362,7 @@ $(document).on("click", ".card-image", function(){
     localStorage.setItem("bookInfo", JSON.stringify(searchResult[indexValue]));
     open("./book.html","_self");
 });
+
+$("#login, #login2").on("click", function(){
+    open("./html/login.html", "_self");
+});

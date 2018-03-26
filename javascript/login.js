@@ -14,21 +14,26 @@ firebase.initializeApp(config);
 database = firebase.database();
 auth = firebase.auth();
 
+$(document).ready(function () {
+    $(".button-collapse").sideNav();
+});
+
 auth.onAuthStateChanged(function(user) {
     if (user) {
         console.log(user);
-        
         if(user!= null){
             var email = user.email;
             $("#currentEmail").text(email);
             $("#createForm").addClass("noneDisplay");
             $("#loginForm").addClass("noneDisplay");
             $("#signoutForm").removeClass("noneDisplay");
+            $("#login, #login2").text(email);
         }
     } else {
-        $("#createForm").removeClass("noneDisplay");
-        $("#loginForm").addClass("noneDisplay");
+        $("#createForm").addClass("noneDisplay");
+        $("#loginForm").removeClass("noneDisplay");
         $("#signoutForm").addClass("noneDisplay");
+        $("#login, #login2").text("Login");
     }
 });
 function login(){
@@ -38,6 +43,9 @@ function login(){
         $("#email").val("");
         $("#password").val("");
         console.log(err);
+        M.toast({
+            html: err.message
+        });
     });
 }
 function create(){
@@ -47,11 +55,17 @@ function create(){
         $("#emailCreate").val("");
         $("#passwordCreate").val("");
         console.log(err);
+        M.toast({
+            html: err.message
+        });
     });
 }
 function logout(){
     auth.signOut().catch(function (err){
         console.log(err);
+        M.toast({
+            html: err.message
+        });
     });
 }
 $("#createLink").on("click", function(){
@@ -65,3 +79,7 @@ $("#loginLink").on("click", function(){
 $("#createButton").on("click", create);
 $("#loginButton").on("click", login);
 $("#logoutButton").on("click",logout);
+
+$("#login, #login2").on("click", function(){
+    open("./html/login.html", "_self");
+});

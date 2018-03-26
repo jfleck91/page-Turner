@@ -39,7 +39,8 @@ $(document).ready(function() {
     if(bookObject.description){
         $("#description").text(bookObject.description);
     }
-    $("#buyLink").attr("href", bookObject.buyLink);
+    $("#buyLink").attr("href", bookObject.buylink);
+    $("#buyLink").attr("target", "_blank");
     ////////////////////////////////////////
     //    Get amount specific book has    //
     //    been viewed globally            //
@@ -63,7 +64,15 @@ $(document).ready(function() {
             database.ref().update(object);
             numberVisits = 1;
         }
-    });
+	});
+
+	function tweetBookInfo() {
+		var bookInfo = bookObject.title;
+		var tweetBtn = $('<a></a>').addClass('twitter-share-button').attr('href', 'http://twitter.com/share').attr('data-url', bookObject.imageLinks.thumbnail).attr('data-text', authors + bookObject.title);
+		$('.bookimg').prepend(tweetBtn);
+		twttr.widgets.load();
+    }
+    tweetBookInfo();
 });
 
 ///////////////////////////////////////////

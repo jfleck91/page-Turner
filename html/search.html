@@ -61,7 +61,7 @@
                             Title
                         </div>
                         <div class="collapsible-body">
-                            <input type="text" id="titleField" placeholder="Title">
+                            <input type="text" id="titleField" placeholder="Title" class="searchForm">
                         </div>
                     </li>
                     <li>
@@ -70,7 +70,7 @@
                             Author
                         </div>
                         <div class="collapsible-body">
-                            <input type="text" id="authorField" placeholder="Author">
+                            <input type="text" id="authorField" placeholder="Author" class="searchForm">
                         </div>
                     </li>
                     <li>
@@ -79,7 +79,7 @@
                             Publisher
                         </div>
                         <div class="collapsible-body">
-                            <input type="text" id="publisherField" placeholder="Publisher">
+                            <input type="text" id="publisherField" placeholder="Publisher" class="searchForm">
                         </div>
                     </li>
                     <li>
@@ -88,7 +88,7 @@
                             Subject
                         </div>
                         <div class="collapsible-body">
-                            <input type="text" id="subjectField" placeholder="Subject">
+                            <input type="text" id="subjectField" placeholder="Subject" class="searchForm">
                         </div>
                     </li>
                     <li>
@@ -97,7 +97,7 @@
                             ISBN
                         </div>
                         <div class="collapsible-body">
-                            <input type="number" id="isbnField" placeholder="ISBN">
+                            <input type="number" id="isbnField" placeholder="ISBN" class="searchForm">
                         </div>
                     </li>
                     <li>
@@ -106,7 +106,7 @@
                             Library of Congress Control Number
                         </div>
                         <div class="collapsible-body">
-                            <input type="number" id="lccnField" placeholder="LCCN">
+                            <input type="number" id="lccnField" placeholder="LCCN" class="searchForm">
                         </div>
                     </li>
                     <li>
@@ -115,7 +115,7 @@
                             Online Computer Library Center Number
                         </div>
                         <div class="collapsible-body">
-                            <input type="number" id="oclcField" placeholder="OCLC">
+                            <input type="number" id="oclcField" placeholder="OCLC" class="searchForm">
                         </div>
                     </li>
                     <li>
@@ -126,27 +126,27 @@
                         <div class="collapsible-body">
 
                             <p>
-                                <input class="with-gap" name="filterGroup" type="radio" id="noneFilter" checked />
+                                <input class="with-gap searchForm" name="filterGroup" type="radio" id="noneFilter" class="searchForm" checked />
                                 <label for="noneFilter">None</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="filterGroup" type="radio" id="ebooksFilter" />
-                                <label for="ebooksFilter">Ebooks</label>
+                                <input class="with-gap searchForm" name="filterGroup" type="radio" id="ebooksFilter" class="searchForm" />
+                                <label for="ebooksFilter" >Ebooks</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="filterGroup" type="radio" id="freeEbooksFilter" />
+                                <input class="with-gap searchForm" name="filterGroup" type="radio" id="freeEbooksFilter" class="searchForm"/>
                                 <label for="freeEbooksFilter">Free Ebooks</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="filterGroup" type="radio" id="fullFilter" />
+                                <input class="with-gap searchForm" name="filterGroup" type="radio" id="fullFilter" class="searchForm"/>
                                 <label for="fullFilter">Full</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="filterGroup" type="radio" id="paidEbooksFilter" />
+                                <input class="with-gap searchForm" name="filterGroup" type="radio" id="paidEbooksFilter" class="searchForm" />
                                 <label for="paidEbooksFilter">Paid Ebooks</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="filterGroup" type="radio" id="partialFilter" />
+                                <input class="with-gap searchForm" name="filterGroup" type="radio" id="partialFilter" class="searchForm" />
                                 <label for="partialFilter">Partial</label>
                             </p>
 
@@ -159,11 +159,11 @@
                         </div>
                         <div class="collapsible-body">
                             <p>
-                                <input class="with-gap" name="orderGroup" type="radio" id="newestOrder" checked/>
+                                <input class="with-gap searchForm" name="orderGroup" type="radio" id="newestOrder" class="searchForm" checked/>
                                 <label for="newestOrder">Newest</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="orderGroup" type="radio" id="relevanceOrder" />
+                                <input class="with-gap searchForm" name="orderGroup" type="radio" id="relevanceOrder" class="searchForm" />
                                 <label for="relevanceOrder">Relevance</label>
                             </p>
                         </div>
@@ -175,15 +175,15 @@
                         </div>
                         <div class="collapsible-body">
                             <p>
-                                <input class="with-gap" name="printGroup" type="radio" id="allPrint" checked/>
+                                <input class="with-gap searchForm" name="printGroup" type="radio" id="allPrint" class="searchForm" checked/>
                                 <label for="allPrint">All</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="printGroup" type="radio" id="bookPrint" />
+                                <input class="with-gap searchForm" name="printGroup" type="radio" id="bookPrint"/>
                                 <label for="bookPrint">Books</label>
                             </p>
                             <p>
-                                <input class="with-gap" name="printGroup" type="radio" id="magazinePrint" />
+                                <input class="with-gap searchForm" name="printGroup" type="radio" id="magazinePrint"  />
                                 <label for="magazinePrint">Magazines</label>
                             </p>
                         </div>
@@ -244,8 +244,7 @@
         </div>
         
     </script>
-    <footer>2018 PageTurner</footer>
-    
+ 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>

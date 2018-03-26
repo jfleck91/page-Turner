@@ -220,7 +220,7 @@ function runSearch() {
                         printedPageCount: value.volumeInfo.printedPageCount,
                         imageLinks: value.volumeInfo.imageLinks,
                         retailPrice: value.saleInfo.retailPrice.amount,
-                        buylink: value.saleInfo.buylink
+                        buylink: value.saleInfo.buyLink
                     };
                     if (value.volumeInfo.hasOwnProperty("description")) {
                         book.description = value.volumeInfo.description;
@@ -240,14 +240,6 @@ function runSearch() {
             $("#numberResults").text(amountResult);
         }
         initialSetupPagination();
-        // var p = $("<p>");
-        // img = $("<img>");
-        // img = img.attr("src", book.imageLinks);
-        // console.log("image " + response.items[0].volumeInfo.imageLinks.thumbnail);
-        // $("#booksDiv").append(img);
-        // $("#booksDiv").append(book.description);
-        // $("#booksDiv").append(book.publishedDate);
-        // $("#booksDiv").append(book.)
     });
 }
 
@@ -266,6 +258,13 @@ function resetForm() {
 //       Click Event for Submit      //
 ///////////////////////////////////////
 $("#submitSearch").click(runSearch);
+$(".searchForm").keyup(function(event){
+    console.log("hllo");
+    if(event.which === 13){
+        event.preventDefault();
+        runSearch();
+    }
+})
 ///////////////////////////////////////
 //         Ready function            //
 //  Check for search string in       //

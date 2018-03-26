@@ -19,12 +19,15 @@ firebase.initializeApp(config);
 database = firebase.database();
 auth = firebase.auth();
 
+var emailParse = "";
+
 auth.onAuthStateChanged(function(user) {
     if (user) {
         console.log(user);
         if(user!= null){
             var email = user.email;
             $("#login, #login2").text(email);
+            emailParse = email.split(".")[0];
         }
     }
 });
@@ -111,7 +114,8 @@ $(document).on("keyup", function(e){
         }
     }
 });
-
+////////////////////////////////////////////
 $("#login, #login2").on("click", function(){
     open("./login.html", "_self");
 });
+////////////////////////////////////////////

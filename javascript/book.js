@@ -28,6 +28,12 @@ auth.onAuthStateChanged(function(user) {
             var email = user.email;
             $("#login, #login2").text(email);
             emailParse = email.split(".")[0];
+            database.ref("users/" + emailParse + "/watchList").once("value", function(snapshot){
+                if($("#title").text() in snapshot){
+                    $("#addWatch").addClass("disabled");
+                }
+            });
+            $("#addWatch").css("display", "block");
         }
     }
 });
@@ -119,3 +125,11 @@ $("#login, #login2").on("click", function(){
     open("./login.html", "_self");
 });
 ////////////////////////////////////////////
+$(document).on("click", "#addWatch:not(.disabled)", function(){
+    console.log("not disabled");
+    var bookString = localStorage.getItem("bookInfo");
+    var bookObject = JSON.parse(bookString);
+    var data = {};
+    data[bookObject.title] = bookObject;
+    database.ref("users/" + emailParse + "/watchList").update(data);
+});

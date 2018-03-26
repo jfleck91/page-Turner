@@ -38,3 +38,9 @@ $(document).on("keyup", function(e){
         }
     }
 });
+///////////////////////////////////////////
+//              login page               //
+///////////////////////////////////////////
+$("#login, #login2").on("click", function(){
+    open("./html/login.html", "_self");
+});

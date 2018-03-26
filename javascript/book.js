@@ -30,8 +30,12 @@ auth.onAuthStateChanged(function(user) {
             var email = user.email;
             $("#login, #login2").text(email);
             emailParse = email.split(".")[0];
+            console.log("emailParse");
             database.ref("users/" + emailParse + "/watchList").once("value", function(snapshot){
+                console.log(bookObject.title);
+                console.log(snapshot);
                 if(bookObject.title in snapshot){
+                    console.log("success");
                     $("#addWatch").addClass("disabled");
                 }
             });

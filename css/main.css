@@ -74,7 +74,7 @@
 }
 
 .whyexplained {
-    height: 200px;
+    max-height: 400px;
     background-color: white;
     margin-bottom: 25px;
     border-radius: 10px;
@@ -157,5 +157,4 @@
 footer{
     background-color: rgb(63, 63, 63);
     color: white;
-    font-size: 3px;
-}
+ }

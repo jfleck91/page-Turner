@@ -16,6 +16,7 @@ auth = firebase.auth();
 
 $(document).ready(function () {
     $(".button-collapse").sideNav();
+  //  console.log(firebase.ServerValue.TIMESTAMP);
 });
 
 auth.onAuthStateChanged(function(user) {
@@ -71,7 +72,6 @@ function create(){
     if(!error){
         var object = {};
         object[email.split(".")[0]] = {
-            lastLoggedIn: Firebase.ServerValue.TIMESTAMP,
             watchList: {
                 example: "nothing"
             }

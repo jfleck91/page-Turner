@@ -221,7 +221,6 @@ function runSearch() {
                 if (value.saleInfo.hasOwnProperty("listPrice")) {
                     var book = {
                         title: value.volumeInfo.title,
-                        authors: value.volumeInfo.authors,
                         publisher: value.volumeInfo.publisher,
                         publishedDate: value.volumeInfo.publishedDate,
                         pageCount: value.volumeInfo.pageCount,
@@ -230,18 +229,20 @@ function runSearch() {
                         retailPrice: value.saleInfo.retailPrice.amount,
                         buylink: value.saleInfo.buyLink
                     };
-                    if(!value.volumeInfo.hasOwnProperty("authors")){
-                        continue;
+                    if(value.volumeInfo.hasOwnProperty("authors")){
+                        book.authors = value.volumeInfo.authors;
+                    }else{
+                        book.authors = "None";
                     }
                     if (value.volumeInfo.hasOwnProperty("description")) {
                         book.description = value.volumeInfo.description;
                     } else {
-                        continue;
+                        book.description = null;
                     }
                     if (value.volumeInfo.hasOwnProperty("industryIdentifiers")) {
                         book.industryIdentifiers = value.volumeInfo.industryIdentifiers;
                     } else {
-                        continue;
+                        book.industryIdentifiers = null;
                     }
                     searchResult.push(book);
                 } else {

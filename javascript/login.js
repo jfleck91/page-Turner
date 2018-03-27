@@ -18,7 +18,7 @@ $(document).ready(function () {
     $(".button-collapse").sideNav();
   //  console.log(firebase.ServerValue.TIMESTAMP);
 });
-
+var books = [];
 auth.onAuthStateChanged(function(user) {
     if (user) {
         console.log(user);
@@ -29,16 +29,17 @@ auth.onAuthStateChanged(function(user) {
             $("#loginForm").addClass("noneDisplay");
             $("#signoutForm").removeClass("noneDisplay");
             $("#login, #login2").text(email);
-
+            books = [];
             $("#listDiv").empty();
             database.ref("users/" + email.split(".")[0] + "/watchList").once("value", function(snapshot){
                 var object = snapshot.val();
                 for(var key in object){
                     if(key != "example"){
                         //execute
+                        books.append(object[key]);
                         console.log(object[key]);
-                        $("#listDiv").append("<a class = 'waves-effect waves-light btn-flat grey listAnchor' data-object = '"+
-                            JSON.stringify(object[key])+
+                        $("#listDiv").append("<a class = 'waves-effect waves-light btn-flat grey listAnchor' data-index = '"+
+                            books.indexOf(object[key])+
                             "'>"+key+"</a>");
                     }
                 }
@@ -120,7 +121,7 @@ $("#login, #login2").on("click", function(){
 $(document).on("click", ".listAnchor", function(){
     $("#singleCardDiv").empty();
 
-    var object = JSON.parse($(this).attr("data-object"));
+    var object = books[parseInt($(this).attr("data-index"))];
     $(".listAnchor.disabled").removeClass("disabled");
     $(this).addClass("disabled");
     var source = $("#search-card-template").html();

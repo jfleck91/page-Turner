@@ -33,10 +33,13 @@ auth.onAuthStateChanged(function(user) {
             $("#listDiv").empty();
             database.ref("users/" + email + "/watchList").once("value", function(snapshot){
                 var object = snapshot.val();
-                for(key in object){
+                for(var key in object){
                     if(key != "example"){
                         //execute
                         console.log(object[key]);
+                        $("#listDiv").append("<a class = 'waves-effect waves-light btn-flat grey listAnchor' data-object = '"+
+                            JSON.stringify(object[key])+
+                            "'>"+key+"</a>");
                     }
                 }
             });
@@ -113,4 +116,41 @@ $("#logoutButton").on("click",logout);
 
 $("#login, #login2").on("click", function(){
     open("./login.html", "_self");
+});
+$(document).on("click", ".listAnchor", function(){
+    $("#singleCardDiv").empty();
+
+    var object = JSON.parse($(this).attr("data-object"));
+    $(".listAnchor.disabled").removeClass("disabled");
+    $(this).addClass("disabled");
+    var source = $("#search-card-template").html();
+        var template = Handlebars.compile(source);
+        var context = {
+            imageSrc: object.imageLinks.thumbnail,
+            title: object.title,
+            price: object.retailPrice,
+            shortDescription: "",
+            longDescription: "",
+            author: "",
+            dataIndex: 0
+        };
+        shortDesc = "";
+        if (object.description != null) {
+            if (object.description.length > 100) {
+                shortDesc = object.description.substring(0, 100) + "...";
+            } else {
+                shortDesc = object.description;
+            }
+            context.shortDescription = shortDesc;
+            context.longDescription = object.description;
+        }
+
+        authors = "";
+        object.authors.forEach(function (authorName) {
+            authors += authorName + ', ';
+        });
+        authors = authors.substring(0, authors.length - 2);
+        context.author = authors;
+        var html = template(context);
+        $("#singleCardDiv").append($(html));
 });

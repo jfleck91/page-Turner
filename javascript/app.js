@@ -230,15 +230,18 @@ function runSearch() {
                         retailPrice: value.saleInfo.retailPrice.amount,
                         buylink: value.saleInfo.buyLink
                     };
+                    if(!value.volumeInfo.hasOwnProperty("authors")){
+                        continue;
+                    }
                     if (value.volumeInfo.hasOwnProperty("description")) {
                         book.description = value.volumeInfo.description;
                     } else {
-                        book.description = null;
+                        continue;
                     }
                     if (value.volumeInfo.hasOwnProperty("industryIdentifiers")) {
                         book.industryIdentifiers = value.volumeInfo.industryIdentifiers;
                     } else {
-                        book.industryIdentifiers = null;
+                        continue;
                     }
                     searchResult.push(book);
                 } else {

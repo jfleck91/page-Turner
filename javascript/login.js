@@ -159,7 +159,7 @@ $(document).on("click", ".listAnchor", function(){
         htmlNode.css("width", "300px");
         htmlNode.css("display", "block");
         htmlNode.css("margin", "auto");
-        $("#singleCardDiv").append($(html));
+        $("#singleCardDiv").append($(htmlNode));
 });
 $("#querySearch2").on("input", function(){
     $("#querySearch").val($("#querySearch2").val());

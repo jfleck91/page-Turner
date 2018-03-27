@@ -29,6 +29,7 @@ auth.onAuthStateChanged(function(user) {
             $("#loginForm").addClass("noneDisplay");
             $("#signoutForm").removeClass("noneDisplay");
             $("#login, #login2").text(email);
+            $("#dashboard").css("display", "block");
             books = [];
             $("#listDiv").empty();
             database.ref("users/" + email.split(".")[0] + "/watchList").once("value", function(snapshot){
@@ -51,6 +52,7 @@ auth.onAuthStateChanged(function(user) {
         $("#loginForm").removeClass("noneDisplay");
         $("#signoutForm").addClass("noneDisplay");
         $("#login, #login2").text("Login");
+        $("#dashboard").css("display", "none");
     }
 });
 function login(){

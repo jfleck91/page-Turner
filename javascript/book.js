@@ -59,7 +59,7 @@ $(document).ready(function() {
     bookObject.authors.forEach(function (authorName) {
         authors += authorName + ', ';
     });
-    $("#authors").text(authors);
+    $("#authors").text(authors.substring(0,authors.length-2));
     if(bookObject.description){
         $("#description").text(bookObject.description);
     }

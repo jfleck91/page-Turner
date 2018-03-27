@@ -192,3 +192,6 @@ footer{
 .listAnchor{
     display: block;
 }
+#dashboard{
+    display: none;
+}

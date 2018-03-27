@@ -31,7 +31,7 @@ auth.onAuthStateChanged(function(user) {
             $("#login, #login2").text(email);
 
             $("#listDiv").empty();
-            database.ref("users/" + email + "/watchList").once("value", function(snapshot){
+            database.ref("users/" + email.split(".")[0] + "/watchList").once("value", function(snapshot){
                 var object = snapshot.val();
                 for(var key in object){
                     if(key != "example"){

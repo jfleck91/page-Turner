@@ -36,7 +36,7 @@ auth.onAuthStateChanged(function(user) {
                 for(var key in object){
                     if(key != "example"){
                         //execute
-                        books.append(object[key]);
+                        books.push(object[key]);
                         console.log(object[key]);
                         $("#listDiv").append("<a class = 'waves-effect waves-light btn-flat grey listAnchor' data-index = '"+
                             books.indexOf(object[key])+

@@ -133,7 +133,7 @@ $(document).on("click", ".listAnchor", function(){
             shortDescription: "",
             longDescription: "",
             author: "",
-            dataIndex: 0
+            dataIndex: $(this).attr("data-index")
         };
         shortDesc = "";
         if (object.description != null) {
@@ -154,4 +154,27 @@ $(document).on("click", ".listAnchor", function(){
         context.author = authors;
         var html = template(context);
         $("#singleCardDiv").append($(html));
+});
+$("#querySearch2").on("input", function(){
+    $("#querySearch").val($("#querySearch2").val());
+});
+$("#querySearch").on("input", function(){
+    $("#querySearch2").val($("#querySearch").val());
+});
+$(document).on("click", ".card-image", function(){
+    console.log("hello");
+    var indexValue = parseInt($(this).attr("data-index"));
+    localStorage.setItem("bookInfo", JSON.stringify(books[indexValue]));
+    open("./book.html","_self");
+});
+function addSessionStorage(query){
+    sessionStorage.setItem("query", query);
+    open("./search.html", "_self");
+}
+$(document).on("keyup", function(e){
+    if(e.key === "Enter"){
+        if($("#querySearch").val().length > 0){
+            addSessionStorage($("#querySearch").val());
+        }
+    }
 });

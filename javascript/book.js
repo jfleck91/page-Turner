@@ -34,7 +34,7 @@ auth.onAuthStateChanged(function(user) {
             database.ref("users/" + emailParse + "/watchList").once("value", function(snapshot){
                 console.log(bookObject.title);
                 console.log(snapshot);
-                if(bookObject.title in snapshot){
+                if(bookObject.title in snapshot.val()){
                     console.log("success");
                     $("#addWatch").addClass("disabled");
                 }

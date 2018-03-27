@@ -155,6 +155,10 @@ $(document).on("click", ".listAnchor", function(){
         authors = authors.substring(0, authors.length - 2);
         context.author = authors;
         var html = template(context);
+        var htmlNode = $(html);
+        htmlNode.css("width", "300px");
+        htmlNode.css("display", "block");
+        htmlNode.css("margin", "auto");
         $("#singleCardDiv").append($(html));
 });
 $("#querySearch2").on("input", function(){
